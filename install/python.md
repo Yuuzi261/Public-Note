@@ -1,7 +1,6 @@
 # 安裝Python
 ### 下載Python
 1. **搜尋python**
-![](https://github.com/GoldOrange261/Public-Note/blob/main/install/screenshots/python/google_python.png)
 2. **進入Python主頁**  
 看到斗大的Download讓人很想按下去，但先等等
 ![](https://github.com/GoldOrange261/Public-Note/blob/main/install/screenshots/python/python_home.png)
