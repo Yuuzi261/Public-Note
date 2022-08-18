@@ -2,7 +2,7 @@
 
 ## 機器學習基本概念簡介
 
-**Q: 什麼是機器學習?**
+**Q: 什麼是機器學習?**<br>
 *A: 概括來說，讓機器具備找一個函式的能力!*
 ![](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/screenshots/1.png)
 
