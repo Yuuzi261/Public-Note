@@ -9,7 +9,7 @@
 ### 函數的類型
 
 **上面提到機器要找一個函數，這個函數被大致分為幾種**
-* **Regression:** 輸出為一個數值
+* **Regression:** 輸出為一個數值<br>
 ![](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/screenshots/2.png)
 * **Classification:** 從既有的選項 *(classes/類別)* 中，選擇其一輸出
 ![](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/screenshots/3.png)
