@@ -31,9 +31,9 @@
 
 將每一天的誤差值加總起來取平均，就能得到損失函數的值<br>
 計算誤差值的方式大致上有下列2種方法:
-1. **MAE** Mean Absolute Error
+* **MAE** Mean Absolute Error
     $e = |y - \hat{y}|$
-2. **MSE** Mean Square Error
+* **MSE** Mean Square Error
     $e = (y - \hat{y})^2$
 
 依照需求和對任務的理解作選擇<br>
@@ -42,3 +42,28 @@
 **Error Surface:**
 將各種參數組合出來的Loss值繪製成等高線圖
 ![](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/screenshots/7.png)
+
+3. **Optimization** 最佳化
+$w^*, b^* = \arg\min\limits_{w, b}L$
+*找一個最好的* $w$*和* $b$ *(* $w^*$ & $b^*$ *)，使得Loss的值最小*
+**Gradient Descent:**
+先遮住另一個參數，我們先看單一的參數...
+![](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/screenshots/8.png)
+$\eta$ : learning rate *(a hyperparameters 自己設定的參數)*<br>
+larning rate越高，學習越快 *(數值變化快)*<br>
+如圖，Gradient Descent顯而易見的問題即是local minima問題，通常無法找到golbal minima，但老師提到local minima其實是個假議題，做Gradient Descent時會遇到的真正難題並不是local minima問題 *(之後再提Gradient Descent真正的痛點)*<br>
+單一的參數理解之後，多個參數也是相同概念...
+    * (Randomly) Pick initial values $w^0, w^b$
+    * Compute
+    $w^1\leftarrow w^0-\eta\frac{\delta L}{\delta w}|_{w = w^0, b = b^0}$
+    $b^1\leftarrow b^0-\eta\frac{\delta L}{\delta b}|_{w = w^0, b = b^0}$
+    * Update $w$ and $b$ interatively
+
+### 訓練 & 預測
+上面的步驟其實就是在訓練
+![](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/screenshots/9.png)
+如圖，在已知的資料上的最小Loss是0.48k，而在預測的數據上，Loss則是來到0.58k
+![](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/screenshots/10.png)
+![](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/screenshots/11.png)
+根據第一次預測的結果，我們可以發現這些資料有存在週期性 *(在此為7天一循環，星期四和星期五的觀看人數都會減少)*，利用這個週期性來嘗試修改模型...<br>
+以上這些`feature * weight + bias`的模型就稱為 **Linear Models**
