@@ -21,3 +21,24 @@
 **以簡單預測YouTube流量為例...**
 1. **Find with Unknown Parameters** 寫出帶有未知參數的函式
 ![](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/screenshots/5.png)
+2. **Define Loss form Training Data** 定義損失函數
+    * Loss is a function of parameters: L(b, w)
+    * Loss: how good a set of value is
+
+![](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/screenshots/6.png)
+
+> Loss: $L = \frac{1}{N}\Sigma e_n$
+
+將每一天的誤差值加總起來取平均，就能得到損失函數的值<br>
+計算誤差值的方式大致上有下列2種方法:
+1. **MAE** Mean Absolute Error
+    $e = |y - \hat{y}|$
+2. **MSE** Mean Square Error
+    $e = (y - \hat{y})^2$
+
+依照需求和對任務的理解作選擇<br>
+*如果$y$和$\hat{y}$都是機率分佈的話，則會選擇Cross-entropy(之後再說)*
+
+**Error Surface:**
+將各種參數組合出來的Loss值繪製成等高線圖
+![](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/screenshots/7.png)
