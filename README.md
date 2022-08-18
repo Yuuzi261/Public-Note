@@ -5,4 +5,4 @@
 * [安裝 Git](https://github.com/GoldOrange261/Public-Note/blob/main/install/git.md)
 
 ## courses
-* [MACHINE LEARNING 2022 SPRING](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/CONTANT.md)
+* [MACHINE LEARNING 2022 SPRING](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/CONTANTS.md)
