@@ -27,7 +27,7 @@
 
 ![](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/screenshots/6.png)
 
-> Loss: $L = \frac{1}{N}\Sigma e_n$
+Loss: $$L = \frac{1}{N}\Sigma e_n$$
 
 將每一天的誤差值加總起來取平均，就能得到損失函數的值<br>
 計算誤差值的方式大致上有下列2種方法:
@@ -44,7 +44,7 @@
 ![](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/screenshots/7.png)
 
 3. **Optimization** 最佳化
-$w^*, b^* = \arg\min\limits_{w, b}L$
+$$w^*, b^* = \arg\min\limits_{w, b}L$$
 *找一個最好的* $w$*和* $b$ *(* $w^*$ & $b^*$ *)，使得Loss的值最小*
 **Gradient Descent:**
 先遮住另一個參數，我們先看單一的參數...
@@ -55,9 +55,8 @@ larning rate越高，學習越快 *(數值變化快)*<br>
 單一的參數理解之後，多個參數也是相同概念...
 * (Randomly) Pick initial values $w^0, w^b$
 * Compute<br>
-
-$w^1\leftarrow w^0-\eta\frac{\delta L}{\delta w}|_{w = w^0, b = b^0}$
-$b^1\leftarrow b^0-\eta\frac{\delta L}{\delta b}|_{w = w^0, b = b^0}$
+$$w^1\leftarrow w^0-\eta\frac{\delta L}{\delta w}|_{w = w^0, b = b^0}$$
+$$b^1\leftarrow b^0-\eta\frac{\delta L}{\delta b}|_{w = w^0, b = b^0}$$
 * Update $w$ and $b$ interatively
 
 ### 訓練 & 預測
