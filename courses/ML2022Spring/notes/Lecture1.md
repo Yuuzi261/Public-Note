@@ -49,7 +49,7 @@ $$w^*, b^* = \arg\min\limits_{w, b}L$$
 **Gradient Descent:**
 先遮住另一個參數，我們先看單一的參數...
 ![](https://i.imgur.com/HKcwjqt.png)
-> $\eta$ : learning rate *(a hyperparameters 自己設定的參數)*
+> $\eta$ : learning rate *(a hyperparameters 自己設定的參數)*<br>
 > larning rate越高，學習越快 *(數值變化快)*
 
 如圖，Gradient Descent顯而易見的問題即是local minima問題，通常無法找到golbal minima，但老師提到local minima其實是個假議題，做Gradient Descent時會遇到的真正難題並不是local minima問題 *(之後再提Gradient Descent真正的痛點)*<br>
