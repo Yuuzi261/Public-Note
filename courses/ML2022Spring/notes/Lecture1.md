@@ -37,7 +37,7 @@
     $e = (y - \hat{y})^2$
 
 依照需求和對任務的理解作選擇<br>
-*如果$y$和$\hat{y}$都是機率分佈的話，則會選擇Cross-entropy(之後再說)*
+*如果 $y$ 和 $\hat{y}$ 都是機率分佈的話，則會選擇Cross-entropy(之後再說)*
 
 **Error Surface:**
 將各種參數組合出來的Loss值繪製成等高線圖
