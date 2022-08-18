@@ -55,8 +55,8 @@ larning rate越高，學習越快 *(數值變化快)*<br>
 單一的參數理解之後，多個參數也是相同概念...
 * (Randomly) Pick initial values $w^0, w^b$
 * Compute 
-$$w^1\leftarrow w^0-\eta\frac{\delta L}{\delta w}|_{w = w^0, b = b^0}$$ 
-$$b^1\leftarrow b^0-\eta\frac{\delta L}{\delta b}|_{w = w^0, b = b^0}$$
+$$w^1\leftarrow w^0-\eta\frac{\delta L}{\delta w}|_{w = w^0, b = b^0},
+b^1\leftarrow b^0-\eta\frac{\delta L}{\delta b}|_{w = w^0, b = b^0}$$
 * Update $w$ and $b$ interatively
 
 ### 訓練 & 預測
