@@ -109,7 +109,7 @@ $$y = b + \sum_j w_jx_j\\\downarrow\\ y = b + \sum_i \color{red}{c_i}sigmoid(\co
 下面實際演示了這個模型...
 ![](https://i.imgur.com/UQnR9LT.png)
 可以將 $r_1$、 $r_2$ 和 $r_3$ 的運算簡寫成如下:
-![](https://i.imgur.com/CvtALd5.png)
+![](https://i.imgur.com/CvtALd5.png)<br>
 接著，將 $r_i$ 代入 $sigmoid$ 函數得到 $a_i$ (可表示成 $a = \sigma(r)$， $a$ 、 $r$ 是矩陣， $\sigma$ 是 $sigmoid$ )，最後加上 $b$ 得到 $y$ ，如下圖:
 ![](https://i.imgur.com/RH9MMiw.png)
 經過整理後得到 $y$ 的線性代數表達法:
