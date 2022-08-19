@@ -101,6 +101,6 @@ Linear Models很顯然是不夠的，它有著很大的限制，稱作**Model Bi
 
 **整理一下我們的新模型:**
 * 單個feature
-$$y = b + wx_1\\\downarrow\\ y = b + \sum_i c_isigmoid(b_i + w_ix_1)$$
+$$y = b + wx_1\\\downarrow\\ y = b + \sum_i \color{red}c_i\color{black}sigmoid(\color{green}b_i\color{black} + \color{blue}w_i\color{black}x_1)$$
 * 多個feature
-$$y = b + \sum_j w_jx_j\\\downarrow\\ y = b + \sum_i c_isigmoid(b_i + \sum_j w_{ij}x_j)$$
+$$y = b + \sum_j w_jx_j\\\downarrow\\ y = b + \sum_i \color{red}c_i\color{black}sigmoid(\color{green}b_i\color{black} + \sum_j \color{blue}w_{ij}\color{black}x_j)$$
