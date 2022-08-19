@@ -87,7 +87,7 @@ Linear Models很顯然是不夠的，它有著很大的限制，稱作**Model Bi
 *A: 先在曲線上取幾個點，再連起來形成Piecewise Linear Curves，只要點取得夠好或**夠多**，就能和原本的曲線非常接近*
 ![](https://i.imgur.com/rdsLvdH.png)
 
-**Q: 那要如何得到<font color = blue>藍色曲線</font>呢?**
+**Q: 那要如何得到<font color = blue>藍色曲線</font>呢?**<br>
 *A: 我們可以用**Sigmoid Function**來嘗試逼近它*
 ![](https://i.imgur.com/HJf0UyJ.png)
 而我們上面一直在講的<font color = blue>藍色曲線</font>則是叫做**Hard Sigmoid**
