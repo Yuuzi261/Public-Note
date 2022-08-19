@@ -106,3 +106,74 @@ Linear Models很顯然是不夠的，它有著很大的限制，稱作**Model Bi
 $$y = b + wx_1\\\downarrow\\ y = b + \sum_i \color{red}{c_i}sigmoid(\color{green}{b_i} + \color{blue}{w_i}x_1)$$
 * 多個feature
 $$y = b + \sum_j w_jx_j\\\downarrow\\ y = b + \sum_i \color{red}{c_i}sigmoid(\color{green}{b_i} + \sum_j \color{blue}{w_{ij}}x_j)$$
+下面實際演示了這個模型...
+![](https://i.imgur.com/UQnR9LT.png)
+可以將 $r_1$、 $r_2$ 和 $r_3$ 的運算簡寫成如下:
+![](https://i.imgur.com/CvtALd5.png)
+接著，將 $r_i$ 代入 $sigmoid$ 函數得到 $a_i$ (可表示成 $a = \sigma(r)$， $a$ 、 $r$ 是矩陣， $\sigma$ 是 $sigmoid$ )，最後加上 $b$ 得到 $y$ ，如下圖:
+![](https://i.imgur.com/RH9MMiw.png)
+經過整理後得到 $y$ 的線性代數表達法:
+![](https://i.imgur.com/w42Xv6C.png)
+接著將每個未知參數組成一個很長的向量矩陣 $\theta$:
+![](https://i.imgur.com/Dd67qNp.png)
+這樣我們就重新定義了機器學習的第一步
+![](https://i.imgur.com/DkoyRrH.png)
+
+### 新模型的Loss函數 & 最佳化
+
+#### Loss函數
+
+代入的參數由原本的 $w$ 和 $b$ 換成了 $\theta$
+$$L(w, b)\rightarrow L(\theta)$$
+![](https://i.imgur.com/CBf2PmY.png)
+可以發現，除了參數不一樣以外，其他都和上面介紹的Loss函數一樣
+
+#### 最佳化
+
+$$
+\theta^* = \arg\min\limits_{\theta}L, 
+\theta = 
+\left[
+\begin{matrix}
+& \theta_1\\
+& \theta_2\\
+& \theta_3\\
+& \vdots &
+\end{matrix}
+\right]
+$$
+* (Randomly) Pick initial values $\theta^0$
+* Compute gradient $g$
+$$
+g = 
+\left[
+\begin{matrix}
+& \frac{\delta L}{\delta\theta_1}|_{\theta = \theta^0} \\
+& \frac{\delta L}{\delta\theta_2}|_{\theta = \theta^0} \\
+& \vdots &
+\end{matrix}
+\right],
+\left[
+\begin{matrix}
+& \theta_1^1 \\
+& \theta_1^2 \\
+& \vdots &
+\end{matrix}
+\right] \leftarrow
+\left[
+\begin{matrix}
+& \theta_0^1 \\
+& \theta_0^2 \\
+& \vdots &
+\end{matrix}
+\right] -
+\left[
+\begin{matrix}
+& \color{red}{\eta}\frac{\delta L}{\delta\theta_1}|_{\theta = \theta^0} \\
+& \color{red}{\eta}\frac{\delta L}{\delta\theta_2}|_{\theta = \theta^0} \\
+& \vdots &
+\end{matrix}
+\right]
+$$
+$$g = \nabla L(\theta^0), \theta^1 = \theta^0 - \color{red}{\eta}g$$
+* 不停地做直到gradient為零向量 *(Zero Vector)* 或不想做為止
