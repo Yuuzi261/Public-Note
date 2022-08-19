@@ -68,3 +68,39 @@ $$b^1\leftarrow b^0-\eta\frac{\delta L}{\delta b}|_{w = w^0, b = b^0}$$
 ![](https://i.imgur.com/w1NUdrS.png)<br>
 根據第一次預測的結果，我們可以發現這些資料有存在週期性 *(在此為7天一循環，星期四和星期五的觀看人數都會減少)*，利用這個週期性來嘗試修改模型...<br>
 以上這些`feature * weight + bias`的模型就稱為 **Linear Models**
+
+### 模型
+Linear Models很顯然是不夠的，它有著很大的限制，稱作**Model Bias**，使得這個模型無法模擬真實的狀況，因此我們需要更複雜、更有彈性的模型
+![](https://i.imgur.com/VMYl3Pd.png)
+
+**Piecewise Linear Curves**
+上面這條紅線其實就是Piecewise Linear Curves *(分段線性曲線)*，我們可以發現這種曲線可以整理成下列的式子:<br>
+<font color = "red">red curve</font> = constant + <font color = blue>sum of a set of blue cruve</font>
+
+![](https://i.imgur.com/C3CjdKW.png)
+
+如圖，利用不同的<font color = blue>藍色曲線</font>加上一個常數，就形成了<font color = red>紅色分段線性曲線</font> *(<font color = red>red curve</font> = 0 + 1 + 2 + 3 curves)*
+
+**Q: 但x和y的關係不一定是Piecewise Linear Curves啊，那該怎麼辦?**<br>
+*A: 先在曲線上取幾個點，再連起來形成Piecewise Linear Curves，只要點取得夠好或**夠多**，就能和原本的曲線非常接近*
+![](https://i.imgur.com/rdsLvdH.png)
+
+**Q: 那要如何得到<font color = blue>藍色曲線</font>呢?**
+*A: 我們可以用**Sigmoid Function**來嘗試逼近它*
+![](https://i.imgur.com/HJf0UyJ.png)
+而我們上面一直在講的<font color = blue>藍色曲線</font>則是叫做**Hard Sigmoid**
+![](https://i.imgur.com/r73qiKr.png)
+透過改變<font color = blue>$w$</font>、<font color = green>$b$</font>和<font color = red>$c$</font>，就能去逼近出各種不同的Sigmoid Function
+![](https://i.imgur.com/x87SuGf.png)
+![](https://i.imgur.com/Y8ccLGp.png)
+![](https://i.imgur.com/t1BuUC8.png)
+
+回到這一張圖...
+![](https://i.imgur.com/VfIYzfK.png)
+我們就成功把<font color = red>紅色分段曲線</font>表示出來了<br>
+
+**整理一下我們的新模型:**
+* 單個feature
+$$y = b + wx_1\\\downarrow\\ y = b + \sum_i c_isigmoid(b_i + w_ix_1)$$
+* 多個feature
+$$y = b + \sum_j w_jx_j\\\downarrow\\ y = b + \sum_i c_isigmoid(b_i + \sum_j w_{ij}x_j)$$
