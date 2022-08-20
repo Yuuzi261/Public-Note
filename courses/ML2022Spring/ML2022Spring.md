@@ -205,5 +205,5 @@ How many update in **1 epoch**?<br>
 :::info
 這裡的 $\color{red}{2}i$ 是因為要合成1條**Hard Sigmoid**需要2條**ReLU**
 :::
-<b><font color = blue>Q: 那這上面兩個哪個比較好呢?</font></b>
+<b><font color = blue>Q: 那這上面兩個哪個比較好呢?</font></b><br>
 *A: ReLU，老師接下來的實驗都選擇了ReLU，顯然ReLU比較好 (至於為什麼，之後再講)*
