@@ -235,9 +235,9 @@ Many hidden layer $\rightarrow$ Deep $\rightarrow$ Deep Learning
 不過要訓練這麼深的Network是有訣竅的，這個之後再講...
 :::
 
-**Q: 要逼近一個複雜的函數，實際上只要有夠多的ReLU和Sigmoid就可以逼近任何的連續函數，理論上只要一排ReLU或Sigmoid夠多就足夠了，為何要深呢? 胖不行嗎? 只是單純"Deep" Network比"Fat" Network看起來更厲害嗎? 為何我們不要把Network變胖，而是變深呢?**
+**Q: 要逼近一個複雜的函數，實際上只要有夠多的ReLU和Sigmoid就可以逼近任何的連續函數，理論上只要一排ReLU或Sigmoid夠多就足夠了，為何要深呢? 胖不行嗎? 只是單純"Deep" Network比"Fat" Network看起來更厲害嗎? 為何我們不要把Network變胖，而是變深呢?**<br>
 *A: 好問題! 之後會再講*
 
-**Q: Deep Network越深就一定越好嗎?**
-*A: 不一定，有可能會出現**Overfitting(過度擬合)**的現象*
+**Q: Deep Network越深就一定越好嗎?**<br>
+*A: 不一定，有可能會出現 **Overfitting(過度擬合)** 的現象*
 ![](https://i.imgur.com/ebPGDAX.png)
