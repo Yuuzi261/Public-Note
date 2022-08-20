@@ -187,13 +187,12 @@ $$g = \nabla L(\theta^0), \theta^1 = \theta^0 - \color{red}{\eta}g$$
 :::success
 #### Example 1
 * 10000 examples (N = 10000)
-* Batch size is 10 (B = 10)
-How many update in **1 epoch**?
+* Batch size is 10 (B = 10)<br>
+How many update in **1 epoch**?<br>
 *A: 10000 / 10 = **1000 updates***
----
 #### Example 2
 * 1000 examples (N = 1000)
-* Batch size is 100 (B = 100)
-How many update in **1 epoch**?
+* Batch size is 100 (B = 100)<br>
+How many update in **1 epoch**?<br>
 *A: 1000 / 100 = **10 updates***
 :::
