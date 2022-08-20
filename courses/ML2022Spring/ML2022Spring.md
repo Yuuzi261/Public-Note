@@ -225,7 +225,7 @@ How many update in **1 epoch**?<br>
 
 ![](https://i.imgur.com/8YxmaY4.png)
 :::info
-Many Neuron $\rightarrow$ Neuron Network
+Many Neuron $\rightarrow$ Neuron Network<br>
 Many hidden layer $\rightarrow$ Deep $\rightarrow$ Deep Learning
 :::
 於是人們把類神經網路越疊越多、越疊越深...
