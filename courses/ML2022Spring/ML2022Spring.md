@@ -51,8 +51,10 @@ $$w^*, b^* = \arg\min\limits_{w, b}L$$
 **Gradient Descent:**
 先遮住另一個參數，我們先看單一的參數...
 ![](https://i.imgur.com/HKcwjqt.png)
-> $\eta$ : learning rate *(a hyperparameters 自己設定的參數)*<br>
-> larning rate越高，學習越快 *(數值變化快)*
+:::info 
+$\eta$ : learning rate *(a hyperparameters 自己設定的參數)*<br>
+larning rate越高，學習越快 *(數值變化快)*
+:::
 
 如圖，Gradient Descent顯而易見的問題即是local minima問題，通常無法找到golbal minima，但老師提到local minima其實是個假議題，做Gradient Descent時會遇到的真正難題並不是local minima問題 *(之後再提Gradient Descent真正的痛點)*<br>
 單一的參數理解之後，多個參數也是相同概念...
@@ -177,3 +179,16 @@ g =
 $$
 $$g = \nabla L(\theta^0), \theta^1 = \theta^0 - \color{red}{\eta}g$$
 * 不停地做直到gradient為零向量 *(Zero Vector)* 或不想做為止
+
+**實作上，我們會將N筆資料切成一個一個Batch...**
+![](https://i.imgur.com/lomaHC8.png)
+每做一個Batch就會**update**一次，把所有Batch都做完一輪稱為**1 epoch**
+
+:::success
+#### Example 1
+* 10000 examples (N = 10000)
+* Batch size is 10 (B = 10)
+How many update in **1 epoch**?
+---
+*A: 10000 / 10 = **1000 updates***
+:::
