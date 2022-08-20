@@ -241,3 +241,29 @@ Many hidden layer $\rightarrow$ Deep $\rightarrow$ Deep Learning
 **Q: Deep Network越深就一定越好嗎?**<br>
 *A: 不一定，有可能會出現 **Overfitting(過度擬合)** 的現象*
 ![](https://i.imgur.com/ebPGDAX.png)
+
+## 機器學習任務攻略
+
+```mermaid
+graph TD
+
+A([loss on training data])
+B([ΣOAO!!])
+C([loss on testing data])
+D([make your model complex])
+E([Next Lecture])
+F([ΣOAO!!])
+G([:D])
+H([more training data argumentation make your model simpler])
+I([Not in HWs, except HW 11])
+
+A -->|large| B
+A -->|small| C
+B -->|model bias| D
+B -->|optimization| E
+C -->|large| F
+C -->|small| G
+F -->|overfitting| H
+F -->|mismatch| I
+D <-->|trade off| H
+```
