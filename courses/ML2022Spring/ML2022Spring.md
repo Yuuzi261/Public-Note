@@ -199,7 +199,7 @@ How many update in **1 epoch**?<br>
 
 ### ReLU
 
-其實不一定要像上面透過**Sigmoid**函數來近似，也可以將<b><font color = blue>Hard Sigmoid</font></b>看成兩個**Rectified Linear Unit (ReLU)**的加總
+其實不一定要像上面透過**Sigmoid**函數來近似，也可以將<b><font color = blue>Hard Sigmoid</font></b>看成兩個 **Rectified Linear Unit (ReLU)** 的加總
 ![](https://i.imgur.com/2a4G8kX.png)
 ![](https://i.imgur.com/yAt23h2.png)
 :::info
