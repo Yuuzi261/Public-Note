@@ -265,5 +265,8 @@ C -->|large| F
 C -->|small| G
 F -->|overfitting| H
 F -->|mismatch| I
-D <-->|trade off| H
+D ---|need trade-off| H
 ```
+:::info
+trade-off: split your training data into training set and validation set for model selection
+:::
