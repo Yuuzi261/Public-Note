@@ -207,3 +207,37 @@ How many update in **1 epoch**?<br>
 :::
 <b><font color = blue>Q: 那這上面兩個哪個比較好呢?</font></b><br>
 *A: ReLU，老師接下來的實驗都選擇了ReLU，顯然ReLU比較好 (至於為什麼，之後再講)*
+
+### 實際實驗結果
+
+![](https://i.imgur.com/LiT9EjM.png)
+越多的ReLU可以製造越複雜的曲線，不過到了1000個ReLU之後，雖然在訓練資料上有更低的Loss，但在預測上就沒有太大的進步<br><br>
+接著我們繼續改進模型...
+![](https://i.imgur.com/v6GvCLS.png)
+可以多做幾次: $x\rightarrow a\rightarrow a'\rightarrow \cdots$
+這個也是**Hyper Parameter**，要自己決定做幾層，下面有實際的實驗數據...
+![](https://i.imgur.com/slfgKXg.png)
+增加層數，在訓練資料上Loss有顯著的降低，在預測上也有進步
+![](https://i.imgur.com/QPVUxzF.png)
+可以發現在兩周一次的低谷的在預測上算是蠻精準的，不過這裡有個很有趣的地方，也就是在 <font color = red>?</font> 的地方，嚴重高估了觀看數值，這其實也不太能怪它預測的不精準，這一天其實是除夕，所以觀看數比預期的低很多
+
+### 神經網路 & 深度學習
+
+![](https://i.imgur.com/8YxmaY4.png)
+:::info
+Many Neuron $\rightarrow$ Neuron Network
+Many hidden layer $\rightarrow$ Deep $\rightarrow$ Deep Learning
+:::
+於是人們把類神經網路越疊越多、越疊越深...
+![](https://i.imgur.com/9Oscfvl.png)
+![](https://i.imgur.com/gvLfs77.png)
+:::success
+不過要訓練這麼深的Network是有訣竅的，這個之後再講...
+:::
+
+**Q: 要逼近一個複雜的函數，實際上只要有夠多的ReLU和Sigmoid就可以逼近任何的連續函數，理論上只要一排ReLU或Sigmoid夠多就足夠了，為何要深呢? 胖不行嗎? 只是單純"Deep" Network比"Fat" Network看起來更厲害嗎? 為何我們不要把Network變胖，而是變深呢?**
+*A: 好問題! 之後會再講*
+
+**Q: Deep Network越深就一定越好嗎?**
+*A: 不一定，有可能會出現**Overfitting(過度擬合)**的現象*
+![](https://i.imgur.com/ebPGDAX.png)
