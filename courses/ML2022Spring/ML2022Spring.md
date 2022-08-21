@@ -293,8 +293,8 @@ trade-off: split your training data into training set and validation set for mod
 
 ### Optimization Issue
 
-目前我們只學到gradient descent的方法做optimization，這個方法有個顯而易見的問題: 通常無法找到golbal minima!
-![](https://i.imgur.com/7oOEN6C.png)
+目前我們只學到gradient descent的方法做optimization，這個方法有個顯而易見的問題: 通常無法找到golbal minima!<br>
+![](https://i.imgur.com/7oOEN6C.png)<br>
 這個model裡面確實有存在一個函數的Loss是夠低的，但gradient descent卻沒有給我們這個函數
 :::info
 老師這裡也下了一個比喻: 就好比你在大海撈針，針確實在海裡，但我們卻沒辦法把針撈起來(找不到QAQ)
