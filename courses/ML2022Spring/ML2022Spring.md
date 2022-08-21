@@ -299,3 +299,23 @@ trade-off: split your training data into training set and validation set for mod
 :::info
 老師這裡也下了一個比喻: 就好比你在大海撈針，針確實在海裡，但我們卻沒辦法把針撈起來(找不到QAQ)
 :::
+![](https://i.imgur.com/0AyGpo1.png)
+
+### Model Bias v.s. Optimization Issue
+
+這個時候就會開始吶喊，蛤所以到底是哪個狀況啊? 到底是model不夠大，還是model夠大了，只是我們沒辦法找到夠好的函數? 該怎麼判斷呢?
+:::success
+可以透過比較不同的model來得知說model到底夠不夠大!
+:::
+先來看下面的實例...
+![](https://i.imgur.com/83frpJu.png)
+試著分析一下，首先我們看到在Testing Data這方面，56-layer的Loss比20-layer的Loss高，先別以為就是overfitting，我們再看一下Training Data，發現56-layer的Loss還是比20-layer來得高，如果是overfitting理論上56-layer在Training Data上應該要比20-layer有更低的Loss，但這個狀況卻是不管Testing Data還是Training Data都是56-layer有更高的Loss，代表這是Optimization Issue，56-layer沒做好optimization，找不到更低Loss的函數，所以Loss才會比20-layer高!
+:::info
+因此老師建議大家，遇到沒做過的問題，可以先跑一些比較小、比較淺的network，或是用一些不是deep learning的方法 *(e.g. linear model, support vector machine...)* ，這些model是比較容易做optimize的，比較不會有optimization失敗的問題，之後便於和深的model比較Loss
+:::
+這也是Optimization Issue，發生在5 layer
+![](https://i.imgur.com/wgjQn1k.png)
+:::success
+**解決方法:**
+更強大的Optimization技術!! *(下一節課再講)*
+:::
