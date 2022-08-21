@@ -270,3 +270,16 @@ D ---|need trade-off| H
 :::info
 trade-off: split your training data into training set and validation set for model selection
 :::
+
+### Model Bias
+
+這個狀況是Model太過簡單了，導致在這個一堆函數所成的集合裡面，即便是最好 *(讓Loss最低)* 的函數Loss也還是很高。換句話說，就是可以讓Loss變低的函數，不在這個model可以描述的範圍之內。下圖清楚的表示了這個狀況...
+:::info
+老師這裡下了一個比喻: 就好比你在大海撈針，但海裡根本沒有針
+:::
+![](https://i.imgur.com/dpDi3zI.png)
+:::success
+**解決方法:**
+重新設計model讓它更有 "彈性" !
+![](https://i.imgur.com/Iy9MJc1.png)
+:::
