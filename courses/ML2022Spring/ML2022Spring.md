@@ -204,7 +204,7 @@ How many update in **1 epoch**?<br>
 ![](https://i.imgur.com/2a4G8kX.png)
 ![](https://i.imgur.com/yAt23h2.png)
 :::info
-這裡的 $\color{red}{2}i$ 是因為要合成1條**Hard Sigmoid**需要2條**ReLU**
+:information_source: 這裡的 $\color{red}{2}i$ 是因為要合成1條**Hard Sigmoid**需要2條**ReLU**
 :::
 <b><font color = blue>Q: 那這上面兩個哪個比較好呢?</font></b><br>
 *A: ReLU，老師接下來的實驗都選擇了ReLU，顯然ReLU比較好 (至於為什麼，之後再講)*
@@ -269,7 +269,7 @@ F -->|mismatch| I
 D ---|need trade-off| H
 ```
 :::info
-trade-off: split your training data into training set and validation set for model selection
+:information_source: trade-off: split your training data into training set and validation set for model selection
 :::
 
 <br>
@@ -283,11 +283,11 @@ trade-off: split your training data into training set and validation set for mod
 
 這個狀況是Model太過簡單了，導致在這個一堆函數所成的集合裡面，即便是最好 *(讓Loss最低)* 的函數Loss也還是很高。換句話說，就是可以讓Loss變低的函數，不在這個model可以描述的範圍之內。下圖清楚的表示了這個狀況...
 :::info
-老師這裡下了一個比喻: 就好比你在大海撈針，但海裡根本沒有針
+:information_source: 老師這裡下了一個比喻: 就好比你在大海撈針，但海裡根本沒有針
 :::
 ![](https://i.imgur.com/dpDi3zI.png)
 :::success
-**解決方法:** 重新設計model讓它更有 "彈性" !
+:heavy_check_mark: **解決方法:** 重新設計model讓它更有 "彈性" !
 ![](https://i.imgur.com/Iy9MJc1.png)
 :::
 
@@ -297,7 +297,7 @@ trade-off: split your training data into training set and validation set for mod
 ![](https://i.imgur.com/7oOEN6C.png)<br>
 這個model裡面確實有存在一個函數的Loss是夠低的，但gradient descent卻沒有給我們這個函數
 :::info
-老師這裡也下了一個比喻: 就好比你在大海撈針，針確實在海裡，但我們卻沒辦法把針撈起來(找不到QAQ)
+:information_source: 老師這裡也下了一個比喻: 就好比你在大海撈針，針確實在海裡，但我們卻沒辦法把針撈起來(找不到QAQ)
 :::
 ![](https://i.imgur.com/0AyGpo1.png)
 
@@ -311,11 +311,11 @@ trade-off: split your training data into training set and validation set for mod
 ![](https://i.imgur.com/83frpJu.png)
 試著分析一下，首先我們看到在Testing Data這方面，56-layer的Loss比20-layer的Loss高，先別以為就是overfitting，我們再看一下Training Data，發現56-layer的Loss還是比20-layer來得高，如果是overfitting理論上56-layer在Training Data上應該要比20-layer有更低的Loss，==但這個狀況卻是不管Testing Data還是Training Data都是56-layer有更高的Loss，代表這是Optimization Issue，56-layer沒做好optimization，找不到更低Loss的函數，所以Loss才會比20-layer高!==
 :::info
-:bulb: **老師的建議**
+:bulb: **老師的建議**<br>
 遇到沒做過的問題，可以先跑一些比較小、比較淺的network，或是用一些不是deep learning的方法 *(e.g. linear model, support vector machine...)* ，這些model是比較容易做optimize的，比較不會有optimization失敗的問題，之後便於和深的model比較Loss
 :::
 這也是Optimization Issue，發生在5 layer
 ![](https://i.imgur.com/wgjQn1k.png)
 :::success
-**解決方法:** 更強大的Optimization技術!! *(下一節課再講)*
+:heavy_check_mark: **解決方法:** 更強大的Optimization技術!! *(下一節課再講)*
 :::
