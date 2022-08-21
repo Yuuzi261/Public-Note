@@ -271,6 +271,13 @@ D ---|need trade-off| H
 trade-off: split your training data into training set and validation set for model selection
 :::
 
+<br>
+
+:::warning
+**狀況1: 訓練資料的Loss就很大!!**
+*可能是Model Bias或Optimization Issue*
+:::
+
 ### Model Bias
 
 這個狀況是Model太過簡單了，導致在這個一堆函數所成的集合裡面，即便是最好 *(讓Loss最低)* 的函數Loss也還是很高。換句話說，就是可以讓Loss變低的函數，不在這個model可以描述的範圍之內。下圖清楚的表示了這個狀況...
@@ -282,4 +289,13 @@ trade-off: split your training data into training set and validation set for mod
 **解決方法:**
 重新設計model讓它更有 "彈性" !
 ![](https://i.imgur.com/Iy9MJc1.png)
+:::
+
+### Optimization Issue
+
+目前我們只學到gradient descent的方法做optimization，這個方法有個顯而易見的問題: 通常無法找到golbal minima!
+![](https://i.imgur.com/7oOEN6C.png)
+這個model裡面確實有存在一個函數的Loss是夠低的，但gradient descent卻沒有給我們這個函數
+:::info
+老師這裡也下了一個比喻: 就好比你在大海撈針，針確實在海裡，但我們卻沒辦法把針撈起來(找不到QAQ)
 :::
