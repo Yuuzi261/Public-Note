@@ -185,6 +185,7 @@ $$g = \nabla L(\theta^0), \theta^1 = \theta^0 - \color{red}{\eta}g$$
 每做一個Batch就會**update**一次，把所有Batch都做完一輪稱為**1 epoch**
 
 :::success
+:mag_right: **Example**
 #### Example 1
 * 10000 examples (N = 10000)
 * Batch size is 10 (B = 10)<br>
@@ -274,7 +275,7 @@ trade-off: split your training data into training set and validation set for mod
 <br>
 
 :::warning
-**狀況1: 訓練資料的Loss就很大!!**
+:pushpin: **狀況1: 訓練資料的Loss就很大!!**<br>
 *可能是Model Bias或Optimization Issue*
 :::
 
@@ -286,8 +287,7 @@ trade-off: split your training data into training set and validation set for mod
 :::
 ![](https://i.imgur.com/dpDi3zI.png)
 :::success
-**解決方法:**
-重新設計model讓它更有 "彈性" !
+**解決方法:** 重新設計model讓它更有 "彈性" !
 ![](https://i.imgur.com/Iy9MJc1.png)
 :::
 
@@ -309,13 +309,13 @@ trade-off: split your training data into training set and validation set for mod
 :::
 先來看下面的實例...
 ![](https://i.imgur.com/83frpJu.png)
-試著分析一下，首先我們看到在Testing Data這方面，56-layer的Loss比20-layer的Loss高，先別以為就是overfitting，我們再看一下Training Data，發現56-layer的Loss還是比20-layer來得高，如果是overfitting理論上56-layer在Training Data上應該要比20-layer有更低的Loss，但這個狀況卻是不管Testing Data還是Training Data都是56-layer有更高的Loss，代表這是Optimization Issue，56-layer沒做好optimization，找不到更低Loss的函數，所以Loss才會比20-layer高!
+試著分析一下，首先我們看到在Testing Data這方面，56-layer的Loss比20-layer的Loss高，先別以為就是overfitting，我們再看一下Training Data，發現56-layer的Loss還是比20-layer來得高，如果是overfitting理論上56-layer在Training Data上應該要比20-layer有更低的Loss，==但這個狀況卻是不管Testing Data還是Training Data都是56-layer有更高的Loss，代表這是Optimization Issue，56-layer沒做好optimization，找不到更低Loss的函數，所以Loss才會比20-layer高!==
 :::info
-因此老師建議大家，遇到沒做過的問題，可以先跑一些比較小、比較淺的network，或是用一些不是deep learning的方法 *(e.g. linear model, support vector machine...)* ，這些model是比較容易做optimize的，比較不會有optimization失敗的問題，之後便於和深的model比較Loss
+:bulb: **老師的建議**
+遇到沒做過的問題，可以先跑一些比較小、比較淺的network，或是用一些不是deep learning的方法 *(e.g. linear model, support vector machine...)* ，這些model是比較容易做optimize的，比較不會有optimization失敗的問題，之後便於和深的model比較Loss
 :::
 這也是Optimization Issue，發生在5 layer
 ![](https://i.imgur.com/wgjQn1k.png)
 :::success
-**解決方法:**
-更強大的Optimization技術!! *(下一節課再講)*
+**解決方法:** 更強大的Optimization技術!! *(下一節課再講)*
 :::
