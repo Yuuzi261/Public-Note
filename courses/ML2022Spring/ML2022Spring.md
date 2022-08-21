@@ -328,15 +328,16 @@ D ---|need trade-off| H
 :::
 下面舉一個極端的例子...
 :::success
-:mag_right: **An extreme example**
-Training data: $\{(x^1, \hat{y^1}), (x^2, \hat{y^2}), \dots, (x^N, \hat{y^N})\}$<br>
-$
+:mag_right: **An extreme example** <br>
+Training data: 
+$$\{(x^1, \hat{y^1}), (x^2, \hat{y^2}), \dots, (x^N, \hat{y^N})\}$$
+$$
 f(x) =
 \begin{cases}
 \hat{y^i} & \exists x^i = x \\
 random & otherwise
 \end{cases}
-$
+$$
 This function obtains **zero training loss**, but **large testing loss.**
 :::
 上面可以看到，這個函數簡直一無是處，如果訓練資料有相同的 $x^i$ 就輸出跟訓練資料一模一樣的 $\hat{y^i}$ ，如果沒有，就隨機輸出。雖然在training data上的loss是0，但拿到testing data上的表現是極為糟糕的<br><br>
