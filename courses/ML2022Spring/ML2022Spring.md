@@ -283,7 +283,7 @@ D ---|need trade-off| H
 
 這個狀況是Model太過簡單了，導致在這個一堆函數所成的集合裡面，即便是最好 *(讓Loss最低)* 的函數Loss也還是很高。換句話說，就是可以讓Loss變低的函數，不在這個model可以描述的範圍之內。下圖清楚的表示了這個狀況...
 :::info
-:information_source: 老師這裡下了一個比喻: 就好比你在大海撈針，但海裡根本沒有針
+:paperclip: 老師這裡下了一個比喻: 就好比你在大海撈針，但海裡根本沒有針
 :::
 ![](https://i.imgur.com/dpDi3zI.png)
 :::success
@@ -297,7 +297,7 @@ D ---|need trade-off| H
 ![](https://i.imgur.com/7oOEN6C.png)<br>
 這個model裡面確實有存在一個函數的Loss是夠低的，但gradient descent卻沒有給我們這個函數
 :::info
-:information_source: 老師這裡也下了一個比喻: 就好比你在大海撈針，針確實在海裡，但我們卻沒辦法把針撈起來(找不到QAQ)
+:paperclip: 老師這裡也下了一個比喻: 就好比你在大海撈針，針確實在海裡，但我們卻沒辦法把針撈起來(找不到QAQ)
 :::
 ![](https://i.imgur.com/0AyGpo1.png)
 
