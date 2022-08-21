@@ -331,6 +331,7 @@ D ---|need trade-off| H
 :mag_right: **An extreme example** <br>
 Training data: 
 $$\{(x^1, \hat{y^1}), (x^2, \hat{y^2}), \dots, (x^N, \hat{y^N})\}$$
+Model:
 $$
 f(x) =
 \begin{cases}
