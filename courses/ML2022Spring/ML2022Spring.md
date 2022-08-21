@@ -319,3 +319,33 @@ D ---|need trade-off| H
 :::success
 :heavy_check_mark: **解決方法:** 更強大的Optimization技術!! *(下一節課再講)*
 :::
+
+### Overfitting & Mismatch
+
+:::warning
+:pushpin: **狀況2: 訓練資料的Loss小，但是測試資料的Loss大!!**<br>
+*可能是Overfitting或Mismatch*
+:::
+下面舉一個極端的例子...
+:::success
+:mag_right: **An extreme example**
+Training data: $\{(x^1, \hat{y^1}), (x^2, \hat{y^2}), \dots, (x^N, \hat{y^N})\}$<br>
+$
+f(x) =
+\begin{cases}
+\hat{y^i} & \exists x^i = x \\
+random & otherwise
+\end{cases}
+$
+This function obtains **zero training loss**, but **large testing loss.**
+:::
+上面可以看到，這個函數簡直一無是處，如果訓練資料有相同的 $x^i$ 就輸出跟訓練資料一模一樣的 $\hat{y^i}$ ，如果沒有，就隨機輸出。雖然在training data上的loss是0，但拿到testing data上的表現是極為糟糕的<br><br>
+
+**日常會遇到的例子:**
+![](https://i.imgur.com/0TRvDxM.png)
+太過有彈性的model在沒有訓練到的地方就會有 **"freestyle"** 導致在Testing data有較大的Loss
+:::success
+:heavy_check_mark: **解決方法:** <br>
+1. 增加訓練資料! <br><i><font color = gray>只要有更多的訓練資料就能限制住函數的形狀，減少"freestyle"的發生</font></i><br><i><font color = gray>(</font><font color = red>不可</font><font color = gray>在作業中使用)</font></i><br>但可以使用: Data Augmentation <br><i><font color = gray>e.g. 將圖片左右翻轉、截一塊出來放大...(但是要合理)</font></i>
+2. 給模型一些限制!
+:::
