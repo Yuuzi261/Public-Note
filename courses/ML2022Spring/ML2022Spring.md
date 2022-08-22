@@ -386,3 +386,19 @@ This function obtains **zero training loss**, but **large testing loss.**
 
 訓練資料 和 測試資料 分佈不一樣 *<font color = gray>(大部分作業不會遇到這種問題，除了HW11)</font>*
 ![](https://i.imgur.com/Xs846ht.png)
+
+## 類神經網路訓練不起來怎麼辦 (一)： 局部最小值 (local minima) 與鞍點 (saddle point)
+
+### 為什麼Optimization會失敗?
+
+隨著參數不斷update，training loss卻不再下降至滿意的數值，甚至是一開始model就訓練不起來...$\rightarrow$ 走到了一個地方，參數對loss的微分為0，使得gradient descent沒辦法再update參數
+![](https://i.imgur.com/3fre5ie.png)
+:::warning
+:warning: **注意**
+這個時候通常會想到local minima問題，但事實上並不是只有local minima的gradient是0，比如說: **鞍點 (saddle point)**，這些gradient是0的地方，我們通稱 **關鍵點 (critical point)**
+:::
+![](https://i.imgur.com/ZLGLis4.png)
+* **local minima:** :x: no way to go
+* **saddle point:** :heavy_check_mark: can escape
+
+### 判斷 local minima 和 saddle point
