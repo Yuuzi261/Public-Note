@@ -391,10 +391,10 @@ This function obtains **zero training loss**, but **large testing loss.**
 
 ### 為什麼Optimization會失敗?
 
-隨著參數不斷update，training loss卻不再下降至滿意的數值，甚至是一開始model就訓練不起來...$\rightarrow$ 走到了一個地方，參數對loss的微分為0，使得gradient descent沒辦法再update參數
+隨著參數不斷update，training loss卻不再下降至滿意的數值，甚至是一開始model就訓練不起來......$\rightarrow$ 走到了一個地方，參數對loss的微分為0，使得gradient descent沒辦法再update參數
 ![](https://i.imgur.com/3fre5ie.png)
 :::warning
-:warning: **注意**
+:warning: **注意** <br>
 這個時候通常會想到local minima問題，但事實上並不是只有local minima的gradient是0，比如說: **鞍點 (saddle point)**，這些gradient是0的地方，我們通稱 **關鍵點 (critical point)**
 :::
 ![](https://i.imgur.com/ZLGLis4.png)
