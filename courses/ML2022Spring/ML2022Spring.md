@@ -349,5 +349,16 @@ This function obtains **zero training loss**, but **large testing loss.**
 :::success
 :heavy_check_mark: **解決方法:** <br>
 1. 增加訓練資料! <br><i><font color = gray>只要有更多的訓練資料就能限制住函數的形狀，減少"freestyle"的發生</font></i><br><i><font color = gray>(</font><font color = red>不可</font><font color = gray>在作業中使用)</font></i><br>但可以使用: Data Augmentation <br><i><font color = gray>e.g. 將圖片左右翻轉、截一塊出來放大...(但是要合理)</font></i>
-2. 給模型一些限制!
+![](https://i.imgur.com/MpzoSI2.png)
+2. 給模型一些限制! <br>
+<i><font color = gray>
+
+要給多少限制取決於自己對問題的理解 ~~(自己通靈)~~![](https://i.imgur.com/tfp2BSP.png)<br>限制的方法: <br>
+* Less parameters, sharing parameters
+* Less features
+* Early stopping
+* Regularization
+* Dropout
+
+</font></i>
 :::
