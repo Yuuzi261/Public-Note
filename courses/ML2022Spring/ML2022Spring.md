@@ -360,3 +360,6 @@ This function obtains **zero training loss**, but **large testing loss.**
     * Dropout
 </font></i>
 :::
+**CNN**
+![](https://i.imgur.com/DIPvlit.png) <br>
+相比一般的Fully-connected架構，CNN的限制較多，它可以找到函數較少，但它因為針對影像的特性來限制model，所以CNN在影像上的表現較好
