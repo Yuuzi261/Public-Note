@@ -365,7 +365,7 @@ This function obtains **zero training loss**, but **large testing loss.**
 ![](https://i.imgur.com/DIPvlit.png) <br>
 相比一般的Fully-connected架構，CNN的限制較多，它可以找到函數較少，但它因為針對影像的特性來限制model，所以CNN在影像上的表現較好
 :::danger
-:x: **注意 限制不可過多**\
+:x: **注意 限制不可過多** <br>
 限制過多 $\rightarrow$ model bias問題 <br>
 ![](https://i.imgur.com/BC6roFk.png)
 :::
@@ -373,6 +373,11 @@ This function obtains **zero training loss**, but **large testing loss.**
 **Bias-Complexity Trade-off**
 ![](https://i.imgur.com/yZHIZLO.png)
 
-**Cross Validation**\
+**Cross Validation** <br>
 為了避免糾結在public testing set上面，應該將training set拆出validation set *(通常9:1)* 根據validation set出來的loss來挑選模型
 ![](https://i.imgur.com/6V0nn45.png)
+但是這樣可能會遇到一個問題，如果分得不好，剛剛好奇怪的data都分到validation set，導致結果很差怎麼辦? $\rightarrow$ **N-fold Cross Validation** !!
+
+**N-fold Cross Validation** <br>
+先將training set分成N等份，將其中一份拿來當validation set，其餘當training set，重複N次，將每個model每次的loss加總起來平均並比較，找到loss最小的model，最後再把所有的training set給loss最低的model，就可以拿去跑testing set了，下圖以N = 3舉例說明...
+![](https://i.imgur.com/XAQebmv.png)
