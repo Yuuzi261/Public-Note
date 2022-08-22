@@ -385,3 +385,4 @@ This function obtains **zero training loss**, but **large testing loss.**
 ### Mismatch
 
 訓練資料 和 測試資料 分佈不一樣 *<font color = gray>(大部分作業不會遇到這種問題，除了HW11)</font>*
+![](https://i.imgur.com/Xs846ht.png)
