@@ -381,3 +381,7 @@ This function obtains **zero training loss**, but **large testing loss.**
 **N-fold Cross Validation** <br>
 先將training set分成N等份，將其中一份拿來當validation set，其餘當training set，重複N次，將每個model每次的loss加總起來平均並比較，找到loss最小的model，最後再把所有的training set給loss最低的model，就可以拿去跑testing set了，下圖以N = 3舉例說明...
 ![](https://i.imgur.com/XAQebmv.png)
+
+### Mismatch
+
+訓練資料 和 測試資料 分佈不一樣 *<font color = gray>(大部分作業不會遇到這種問題，除了HW11)</font>*
