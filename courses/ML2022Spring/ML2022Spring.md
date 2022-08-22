@@ -288,6 +288,7 @@ D ---|need trade-off| H
 ![](https://i.imgur.com/dpDi3zI.png)
 :::success
 :heavy_check_mark: **解決方法:** 重新設計model讓它更有 "彈性" !\
+
 ![](https://i.imgur.com/Iy9MJc1.png)
 :::
 
@@ -367,6 +368,7 @@ This function obtains **zero training loss**, but **large testing loss.**
 :::danger
 :x: **注意 限制不可過多**\
 限制過多 $\rightarrow$ model bias問題\
+
 ![](https://i.imgur.com/BC6roFk.png)
 :::
 
