@@ -391,7 +391,7 @@ This function obtains **zero training loss**, but **large testing loss.**
 
 ### 為什麼Optimization會失敗?
 
-隨著參數不斷update，training loss卻不再下降至滿意的數值，甚至是一開始model就訓練不起來......$\rightarrow$ 走到了一個地方，參數對loss的微分為0，使得gradient descent沒辦法再update參數
+隨著參數不斷update，training loss卻不再下降至滿意的數值，甚至是一開始model就訓練不起來...$\rightarrow$ 走到了一個地方，參數對loss的微分為0，使得gradient descent沒辦法再update參數
 ![](https://i.imgur.com/3fre5ie.png)
 :::warning
 :warning: **注意** <br>
@@ -401,4 +401,73 @@ This function obtains **zero training loss**, but **large testing loss.**
 * **local minima:** :x: no way to go
 * **saddle point:** :heavy_check_mark: can escape
 
-### 判斷 local minima 和 saddle point
+### 判斷 Local Minima 和 Saddle Point
+
+想要知道一個點到底是local minima還是saddle point $\rightarrow$ 要知道loss function的形狀 $\rightarrow$ 但loss function極為複雜，要如何知道它的形狀呢?
+![](https://i.imgur.com/HJYxaO6.png)
+雖然不知道 $L(\theta)$ 的樣子，但可以從 $L(\theta')$ 去逼近它 <br>
+![](https://i.imgur.com/5OHPWxu.png)
+在critical point的時候，gradient為0，因此 $(\theta - \color{blue}{\theta'})^T\color{green}{g}$ 這一項為0，因此我們可以根據 $\frac{1}{2}(\theta - \color{blue}{\theta'}^T)\color{red}{H}(\theta - \color{blue}{\theta'})$ 這項來判斷 $\color{blue}{\theta'}$ 附近的error surface長什麼樣子，進而知道 $\color{blue}{\theta'}$ 是local minima還是saddle point<br><br>
+
+:::info
+[:information_source: 矩陣的特徵值(eigen values)](https://silverwind1982.pixnet.net/blog/post/154593170)
+:::
+
+**由Hessian判斷關鍵點:** <br>
+
+![](https://i.imgur.com/fT61Eb4.png)
+:::success
+:mag_right: **Example** <br>
+![](https://i.imgur.com/DL6UgtR.png)
+![](https://i.imgur.com/7MQ3h8Z.png)
+$$
+\color{red}{H} = 
+\left[
+\begin{matrix}
+& 0 & -2 \\
+& -2 & 0 &
+\end{matrix}
+\right] \\
+$$
+$$
+det{
+\left(
+\left[
+\begin{matrix}
+& 0 - \lambda & -2 \\
+& -2 & 0 - \lambda &
+\end{matrix}
+\right]
+\right)
+} = 0
+$$
+$$
+∴ \lambda^2 - 4 = 0, \quad\lambda^2 = 4, \quad\lambda = \pm 2 \\
+∴ \lambda_1 = 2, \quad\lambda_2 = -2
+$$
+:::<br>
+
+**參數可以update的方向:** <br>
+![](https://i.imgur.com/pfVYuz7.png)
+簡單來說， $\theta = \color{blue}{\theta'} + u$ 就可以讓loss變小
+:::success
+:mag_right: **Example** <br>
+![](https://i.imgur.com/TOPpcJH.png)
+:::
+:::danger
+:exclamation: 但是因為上述方法的運算量巨大，所以幾乎不會在實作中使用
+:::
+
+### Saddle Point v.s. Local Minima
+
+**Q: 既然saddle point比較不可怕，那我們如果比較常遇到的是saddle point，是不是就能比較不用擔心? 到底哪個常見呢?**
+*A: [我們先進一段小故事! (魔法師狄奧倫娜)](https://aijianggu.com/collect/835222.html)*
+<br><br>
+這個故事給我們了一個啟發: 三維空間無路可走的地方，在四維或是更高維的空間是不是有可能還有路可以走呢?
+
+![](https://i.imgur.com/fqHKRXF.png)
+如圖，在二維空間中看似local minima的地方，在三維空間中卻可能是saddle point，在動輒有百萬、千萬參數 *(百萬、千萬維度)* 的model中，是不是其實有很多路可以走呢? <br>
+
+**真實實驗案例:**
+![](https://i.imgur.com/HDet9Ye.png)
+可以發現，即使是在最極端的狀況下，還是有幾乎一半的路是可以讓loss下降的，無路可走(local minima)的狀況並不常見
