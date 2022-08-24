@@ -407,10 +407,10 @@ This function obtains **zero training loss**, but **large testing loss.**
 ![](https://i.imgur.com/HJYxaO6.png)
 雖然不知道 $L(\theta)$ 的樣子，但可以從 $L(\theta')$ 去逼近它 <br>
 ![](https://i.imgur.com/5OHPWxu.png)
-在critical point的時候，gradient為0，因此 $(\theta - \color{blue}{\theta'})^T\color{green}{g}$ 這一項為0，因此我們可以根據 $\frac{1}{2}(\theta - \color{blue}{\theta'}^T)\color{red}{H}(\theta - \color{blue}{\theta'})$ 這項來判斷 $\color{blue}{\theta'}$ 附近的error surface長什麼樣子，進而知道 $\color{blue}{\theta'}$ 是local minima還是saddle point<br><br>
+在critical point的時候，gradient為0，因此 $(\theta - \color{blue}{\theta'})^T\color{green}{g}$ 這一項為0，我們可以根據 $\frac{1}{2}(\theta - \color{blue}{\theta'}^T)\color{red}{H}(\theta - \color{blue}{\theta'})$ 這項來判斷 $\color{blue}{\theta'}$ 附近的error surface長什麼樣子，進而知道 $\color{blue}{\theta'}$ 是local minima還是saddle point<br><br>
 
 :::info
-[:information_source: 矩陣的特徵值(eigen values)](https://silverwind1982.pixnet.net/blog/post/154593170)
+[:information_source: 如何計算矩陣的特徵值(eigen values)](https://silverwind1982.pixnet.net/blog/post/154593170)
 :::
 
 **由Hessian判斷關鍵點:** <br>
@@ -445,7 +445,8 @@ $$
 ∴ \lambda^2 - 4 = 0, \quad\lambda^2 = 4, \quad\lambda = \pm 2 \\
 ∴ \lambda_1 = 2, \quad\lambda_2 = -2
 $$
-:::<br>
+:::
+<br>
 
 **參數可以update的方向:** <br>
 ![](https://i.imgur.com/pfVYuz7.png)
