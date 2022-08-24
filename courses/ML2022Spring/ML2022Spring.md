@@ -420,6 +420,7 @@ This function obtains **zero training loss**, but **large testing loss.**
 :mag_right: **Example** <br>
 ![](https://i.imgur.com/DL6UgtR.png)
 ![](https://i.imgur.com/7MQ3h8Z.png)
+**$\lambda_1, \lambda_2$ 的計算過程:**
 $$
 \color{red}{H} = 
 \left[
@@ -461,7 +462,7 @@ $$
 
 ### Saddle Point v.s. Local Minima
 
-**Q: 既然saddle point比較不可怕，那我們如果比較常遇到的是saddle point，是不是就能比較不用擔心? 到底哪個常見呢?**
+**Q: 既然saddle point比較不可怕，那我們如果比較常遇到的是saddle point，是不是就能比較不用擔心? 到底哪個常見呢?** <br>
 *A: [我們先進一段小故事! (魔法師狄奧倫娜)](https://aijianggu.com/collect/835222.html)*
 <br><br>
 這個故事給我們了一個啟發: 三維空間無路可走的地方，在四維或是更高維的空間是不是有可能還有路可以走呢?
