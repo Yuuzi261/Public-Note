@@ -38,10 +38,7 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 4. 安裝好之後大概會像這樣，中途如果有停下來直接打"Y"同意就好
 ![](https://i.imgur.com/XWccLVu.png)
 5. 重啟Windows Terminal
-6. 輸入以下指令測試安裝有沒有成功，如果出現警告可以重新開機再輸入看看，通常會跑出一堆東西，如圖
-```
-oh-my-posh.exe
-```
+6. 輸入`oh-my-posh.exe`測試安裝有沒有成功，如果出現警告可以重新開機再輸入看看，通常會跑出一堆東西，如圖:
 ![](https://i.imgur.com/bJo0RXy.png)
 
 ## STEP4. 安裝建議的字體
@@ -63,18 +60,14 @@ oh-my-posh.exe
 
 ## STEP5. 更改PROFILE檔案
 
-1. 官網右方欄位找到"Prompt"，接下來照著官方教學，輸入以下指令，如果沒有檔案就新建一個
-```
-code $PROFILE
-```
-這樣就會以vscode開啟這個檔案，如果沒有vscode也可以先輸入`echo $PROFILE`之後到指定的路徑新增設定檔
+1. 官網右方欄位找到"Prompt"，接下來照著官方教學，輸入`code $PROFILE`，這樣就會以vscode開啟這個檔案，如果沒有檔案就新建一個。沒有安裝vscode的話也可以先輸入`echo $PROFILE`之後到指定的路徑新增設定檔
 ![](https://i.imgur.com/pBdsu6J.png)
 ![](https://i.imgur.com/v3x3mNK.png)
 2. 官網右方欄位找到"Customize"，複製以下指令到設定檔並存檔，接著輸入`. $PROFILE`重新載入設定檔
 ```
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/jandedobbeleer.omp.json" | Invoke-Expression
 ```
-如果成功的話重啟後會看到這樣的畫面:
+3. 如果成功的話重啟後會看到這樣的畫面:
 ![](https://i.imgur.com/E2T7hga.png)
 
 ## STEP6. 更換喜歡的主題
