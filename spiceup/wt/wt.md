@@ -67,20 +67,14 @@ oh-my-posh.exe
 ```
 code $PROFILE
 ```
-這樣就會以vscode開啟這個檔案，如果沒有vscode也可以先輸入`echo $PROFILE`之後到指定的路徑新增檔案(以下皆稱呼它PROFILE)
+這樣就會以vscode開啟這個檔案，如果沒有vscode也可以先輸入`echo $PROFILE`之後到指定的路徑新增設定檔
 ![](https://i.imgur.com/pBdsu6J.png)
 ![](https://i.imgur.com/v3x3mNK.png)
-2. 複製以下指令到PROFILE並存檔，重啟Windows Terminal
+2. 官網右方欄位找到"Customize"，複製以下指令到設定檔並存檔，接著輸入`. $PROFILE`重新載入設定檔
 ```
-oh-my-posh init pwsh | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/jandedobbeleer.omp.json" | Invoke-Expression
 ```
 如果成功的話重啟後會看到這樣的畫面:
-![](https://i.imgur.com/hhbdpVP.png)
-3. 接下來複製下面這個指令到PROFILE並存檔，再次重啟Windows Terminal
-```
-& ([ScriptBlock]::Create((oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\jandedobbeleer.omp.json" --print) -join "`n"))
-```
-重啟後會發現主題換了:
 ![](https://i.imgur.com/E2T7hga.png)
 
 ## STEP6. 更換喜歡的主題
@@ -89,7 +83,7 @@ oh-my-posh init pwsh | Invoke-Expression
 ![](https://i.imgur.com/XoQYkuL.png)
 2. 將反白的這個部分換成想要的主題的名字
 ![](https://i.imgur.com/3kzqJwn.png)
-3. 重啟Windows Terminal，可以發現變成自己設定的主題了
+3. 輸入`. $PROFILE`重新載入設定檔之後，可以發現變成自己設定的主題了
 ![](https://i.imgur.com/yLlGi8f.png)
 
 ## STEP7. 更換Windows Terminal的背景 設定透明度...
