@@ -6,3 +6,6 @@
 
 ## courses
 * [MACHINE LEARNING 2022 SPRING](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring)
+
+## spice up
+* [美化 Windows Terminal]()
