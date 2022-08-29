@@ -49,3 +49,49 @@ oh-my-posh.exe
 :::info
 :information_source: 這步是必要的，否則Windows Terminal可能會無法正常顯示
 :::
+
+1. 搜尋"nerd font"或是[點選這裡](https://www.nerdfonts.com/)
+2. 點選"Downloads"進入下載介面
+![](9)
+3. 找到喜歡的字體並下載，會得到一個壓縮檔
+4. 打開Windows的設定，搜尋"字型設定"
+5. 將解壓縮後的檔案全選並拖拉至字型設定中安裝
+![](10)
+6. 打開Windows Terminal設定介面
+7. 點選"預設值" $\rightarrow$ "外觀" $\rightarrow$ "字體"，將字體更改為剛剛安裝好的字體
+![](11)
+
+## STEP5. 更改PROFILE檔案
+
+1. 官網右方欄位找到"Prompt"，接下來照著官方教學，輸入以下指令，如果沒有檔案就新建一個
+```
+code $PROFILE
+```
+這樣就會以vscode開啟這個檔案，如果沒有vscode也可以先輸入`echo $PROFILE`之後到指定的路徑新增檔案(以下皆稱呼它PROFILE)
+![](12)
+2. 複製以下指令到PROFILE並存檔，重啟Windows Terminal
+```
+oh-my-posh init pwsh | Invoke-Expression
+```
+如果成功的話重啟後會看到這樣的畫面:
+![](13)
+3. 接下來複製下面這個指令到PROFILE並存檔，再次重啟Windows Terminal
+```
+& ([ScriptBlock]::Create((oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\jandedobbeleer.omp.json" --print) -join "`n"))
+```
+重啟後會發現主題換了:
+![](14)
+
+## STEP6. 更換喜歡的主題
+
+1. 官網右方欄位找到"Themes"，開始物色喜歡的主題
+![](15)
+2. 將反白的這個部分換成想要的主題的名字
+![](16)
+3. 重啟Windows Terminal，可以發現變成自己設定的主題了
+![](17)
+
+## STEP7. 更換Windows Terminal的背景 設定透明度...
+
+1. 這部份很簡單，甚至不用操作JSON檔，所以就不詳細寫了，只要在Windows Terminal設定介面依照自己的喜好進行設定就可以了
+![](18)
