@@ -22,5 +22,5 @@
 ![](https://i.imgur.com/SkdkcWu.png)
 4. 之後基本上一路Next即可，至於安裝位置的部分，如果懂怎麼設定的話可以改位置，否則用預設的路徑即可
 ![](https://i.imgur.com/WJLqFab.png)
-5. 按下安裝就大功告成啦
+5. 按下安裝就大功告成啦，這裡有個"Disable path length limit"選項可以留意一下，建議點選喔，[至於為什麼請點我](https://www.delftstack.com/zh-tw/howto/python/disable-path-length-limit-python/)
 ![](https://i.imgur.com/Jdn2A08.png)
