@@ -473,3 +473,37 @@ $$
 **真實實驗案例:**
 ![](https://i.imgur.com/HDet9Ye.png)
 可以發現，即使是在最極端的狀況下，還是有幾乎一半的路是可以讓loss下降的，無路可走(local minima)的狀況並不常見
+
+## 類神經網路訓練不起來怎麼辦 (二)： 批次 (batch) 與動量 (momentum)
+
+### Batch
+
+:::info
+:paperclip: **複習**
+![](https://i.imgur.com/lomaHC8.png)
+:::
+1 **epoch** = see all the batches once $\rightarrow$ **Shuffle** after each epoch *(每個epoch都會重新分batch)*
+![](https://i.imgur.com/1mCHgAx.png)
+從這一張圖我們可以看到，大的Batch雖然需要的時間比較久，但卻比較精準，而小的Batch需要的時間比較小，但比較不準，不一定會朝著正確的方向前進。**但真的是這樣嗎?，你可能沒考慮到<font color = red>平行處理</font>的問題!!**
+![](https://i.imgur.com/GSHORCy.png)
+此為實際的實驗結果，因為GPU可以平行運算，所以當batch size是1 ~ 1000時，所需要的時間是幾乎相同的，不過GPU平行運算的能力終究有限，所以當batch size大到超過一定的大小之後，需要的時間還是會隨著batch size的增大而增加的
+![](https://i.imgur.com/WMBHTUc.png)
+因此，大的batch size反而是比較有效率的，所以我們回到上面的這一張圖:
+![](https://i.imgur.com/DhLxMGz.png)
+這樣看起來，大的Batch的劣勢消失了，而小的Batch的優勢沒了。這樣看起來似乎大的Batch是比較好的，但這裡又出現了一個反直覺的地方了，**<font color = red>noisy</font>的gradient反而可以幫助train**
+![](https://i.imgur.com/PVzY9fX.png)
+* Smaller batch size has better performance
+* What wrong with large batch size? $\rightarrow$ Optimization Fails
+<br>
+
+![](https://i.imgur.com/8uGSzHD.png)
+原因在於Full Batch的時候，Loss函數是固定的，當走到critical point的時候就容易卡住，無法再得到更低的loss，但Small Batch不一樣，他每次的Loss函數都有些微的不同，如圖，雖然在<font color = green>$L^1$</font>卡住了但在<font color = blue>$L^2$</font>就有可能可以繼續train下去
+
+![](https://i.imgur.com/aL5CNJ2.png)
+接下來就是更弔詭的事了，經過實驗得到的數據來看，Small Batch對於testing上有更好的表現，即便我們努力讓Large Batch在training上跟Small Batch上有相似的Accuracy，但Large Batch在testing上還是輸給了Small Batch，也就是Large Batch上出現了overfitting，為什麼會這樣呢?
+![](https://i.imgur.com/kn2Qy5W.png)
+這是因為同樣是Minima，有可能是Flat Minima，也有可能是Sharp Minima，如果training data和testing data上有mismatch，在Flat Minima上的影響可能就不太大，還是會有很好的表現，但對於Sharp Minima，一點點的mismatch就是非常致命的。而很多人相信，Small Batch比起Large Batch，更容易跑到Flat Minima，一個比較直觀的解釋是，noisy的gradient在Sharp Minima可能一個不小心就跳離開了，而Flat Minima才比較容易困住它 *<font color = gray>(但這個還是個尚待研究的問題，這個解釋也不是100%正確)<font>*
+:::success
+:memo: **Summary**
+![](https://i.imgur.com/6w47SXm.png)
+:::
