@@ -204,7 +204,7 @@ $$g = \nabla L(\theta^0), \theta^1 = \theta^0 - \color{red}{\eta}g$$
 每做一個Batch就會**update**一次，把所有Batch都做完一輪稱為**1 epoch**
 
 :::success
-:mag_right: **Example** </br></br>
+:mag_right: **Example** </br>
 
 #### Example 1
 
@@ -313,7 +313,7 @@ D ---|need trade-off| H
 :::
 ![](https://i.imgur.com/dpDi3zI.png)
 :::success
-:heavy_check_mark: **解決方法:** 重新設計model讓它更有 "彈性" !</br>
+:heavy_check_mark: **解決方法:** 重新設計model讓它更有 "彈性" !</br></br>
 ![](https://i.imgur.com/Iy9MJc1.png)
 :::
 
@@ -487,7 +487,7 @@ $$
 ![](https://i.imgur.com/pfVYuz7.png)
 簡單來說， $\theta = \color{blue}{\theta'} + u$ 就可以讓loss變小
 :::success
-:mag_right: **Example** </br>
+:mag_right: **Example** </br></br>
 ![](https://i.imgur.com/TOPpcJH.png)
 :::
 :::danger
