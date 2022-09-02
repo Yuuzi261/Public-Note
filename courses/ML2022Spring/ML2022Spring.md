@@ -502,7 +502,7 @@ $$
 ![](https://i.imgur.com/aL5CNJ2.png)
 接下來就是更弔詭的事了，經過實驗得到的數據來看，==Small Batch對於testing上有更好的表現==，即便我們努力讓Large Batch在training上跟Small Batch上有相似的Accuracy，但Large Batch在testing上還是輸給了Small Batch，也就是Large Batch上出現了overfitting，為什麼會這樣呢?
 ![](https://i.imgur.com/kn2Qy5W.png)
-這是因為同樣是Minima，有可能是Flat Minima，也有可能是Sharp Minima，如果training data和testing data上有mismatch，在Flat Minima上的影響可能就不太大，還是會有很好的表現，但對於Sharp Minima，一點點的mismatch就是非常致命的。而很多人相信，Small Batch比起Large Batch，更容易跑到Flat Minima，一個比較直觀的解釋是，noisy的gradient在Sharp Minima可能一個不小心就跳離開了，而Flat Minima才比較容易困住它 *<font color = gray>(但這個還是個尚待研究的問題，這個解釋也不是100%正確)<font>*
+這是因為同樣是Minima，有可能是Flat Minima，也有可能是Sharp Minima，如果training data和testing data上有mismatch，在Flat Minima上的影響可能就不太大，還是會有很好的表現，但對於Sharp Minima，一點點的mismatch就是非常致命的。而很多人相信，Small Batch比起Large Batch，更容易跑到Flat Minima，一個比較直觀的解釋是，noisy的gradient在Sharp Minima可能一個不小心就跳離開了，而Flat Minima才比較容易困住它 *<font color = gray>(但這個還是個尚待研究的問題，這個解釋也不是100%正確)</font>*
 :::success
 :memo: **Summary** <br>
 總結一下，Small Batch和Large Batch各有優缺點，所以這也是一個要自己設定的hyperparameter
