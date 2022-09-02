@@ -4,9 +4,9 @@
 
 ### 何謂機器學習
 
-**Q: 什麼是機器學習?**<br>
+**Q: 什麼是機器學習?**</br>
 *A: 概括來說，讓機器具備找一個函式的能力!*
-![](https://i.imgur.com/xNtqsVZ.png)
+![ ](https://i.imgur.com/xNtqsVZ.png)
 
 ### 函數的類型
 
@@ -71,7 +71,7 @@ $$
 ### 訓練 & 預測
 上面的步驟其實就是在訓練
 ![](https://i.imgur.com/Nt67jPa.png)
-如圖，在已知的資料上的最小Loss是0.48k，而在預測的數據上，Loss則是來到0.58k
+如圖，在已知的資料上的最小Loss是0.48k，而在預測的數據上，Loss則是來到0.58k <br><br>
 ![](https://i.imgur.com/4D6qlbk.png)
 ![](https://i.imgur.com/w1NUdrS.png)<br>
 根據第一次預測的結果，我們可以發現這些資料有存在週期性 *(在此為7天一循環，星期四和星期五的觀看人數都會減少)*，利用這個週期性來嘗試修改模型...<br>
@@ -91,18 +91,16 @@ Linear Models很顯然是不夠的，它有著很大的限制，稱作**Model Bi
 
 **Q: 但x和y的關係不一定是Piecewise Linear Curves啊，那該怎麼辦?**<br>
 *A: 先在曲線上取幾個點，再連起來形成Piecewise Linear Curves，只要點取得夠好或**夠多**，就能和原本的曲線非常接近*
-![](https://i.imgur.com/rdsLvdH.png)
-
+![](https://i.imgur.com/rdsLvdH.png) <br><br>
 **Q: 那要如何得到<font color = blue>藍色曲線</font>呢?**<br>
 *A: 我們可以用**Sigmoid Function**來嘗試逼近它*
-![](https://i.imgur.com/HJf0UyJ.png)
+![](https://i.imgur.com/HJf0UyJ.png) <br><br>
 而我們上面一直在講的<font color = blue>藍色曲線</font>則是叫做**Hard Sigmoid**
-![](https://i.imgur.com/r73qiKr.png)
+![](https://i.imgur.com/r73qiKr.png) <br><br>
 透過改變<font color = blue>$w$</font>、<font color = green>$b$</font>和<font color = red>$c$</font>，就能去逼近出各種不同的Sigmoid Function
 ![](https://i.imgur.com/x87SuGf.png)
 ![](https://i.imgur.com/Y8ccLGp.png)
-![](https://i.imgur.com/t1BuUC8.png)
-
+![](https://i.imgur.com/t1BuUC8.png) <br><br>
 回到這一張圖...
 ![](https://i.imgur.com/VfIYzfK.png)
 我們就成功把<font color = red>紅色分段曲線</font>表示出來了<br>
@@ -112,16 +110,18 @@ Linear Models很顯然是不夠的，它有著很大的限制，稱作**Model Bi
 $$y = b + wx_1\\\downarrow\\ y = b + \sum_i \color{red}{c_i}sigmoid(\color{green}{b_i} + \color{blue}{w_i}x_1)$$
 * 多個feature
 $$y = b + \sum_j w_jx_j\\\downarrow\\ y = b + \sum_i \color{red}{c_i}sigmoid(\color{green}{b_i} + \sum_j \color{blue}{w_{ij}}x_j)$$
+<br>
+
 下面實際演示了這個模型...
-![](https://i.imgur.com/UQnR9LT.png)
+![](https://i.imgur.com/UQnR9LT.png) <br><br>
 可以將 $r_1$、 $r_2$ 和 $r_3$ 的運算簡寫成如下:
-![](https://i.imgur.com/CvtALd5.png)<br>
+![](https://i.imgur.com/CvtALd5.png) <br><br>
 接著，將 $r_i$ 代入 $sigmoid$ 函數得到 $a_i$ (可表示成 $a = \sigma(r)$， $a$ 、 $r$ 是矩陣， $\sigma$ 是 $sigmoid$ )，最後加上 $b$ 得到 $y$ ，如下圖:
-![](https://i.imgur.com/RH9MMiw.png)
+![](https://i.imgur.com/RH9MMiw.png) <br><br>
 經過整理後得到 $y$ 的線性代數表達法:
-![](https://i.imgur.com/w42Xv6C.png)
+![](https://i.imgur.com/w42Xv6C.png) <br><br>
 接著將每個未知參數組成一個很長的向量矩陣 $\theta$:
-![](https://i.imgur.com/Dd67qNp.png)
+![](https://i.imgur.com/Dd67qNp.png) <br><br>
 這樣我們就重新定義了機器學習的第一步
 ![](https://i.imgur.com/DkoyRrH.png)
 
@@ -220,9 +220,9 @@ How many update in **1 epoch**?<br>
 接著我們繼續改進模型...
 ![](https://i.imgur.com/v6GvCLS.png)
 可以多做幾次: $x\rightarrow a\rightarrow a'\rightarrow \cdots$
-這個也是**Hyper Parameter**，要自己決定做幾層，下面有實際的實驗數據...
+這個也是**Hyper Parameter**，要自己決定做幾層，下面有實際的實驗數據...<br><br>
 ![](https://i.imgur.com/slfgKXg.png)
-增加層數，在訓練資料上Loss有顯著的降低，在預測上也有進步
+增加層數，在訓練資料上Loss有顯著的降低，在預測上也有進步 <br><br>
 ![](https://i.imgur.com/QPVUxzF.png)
 可以發現在兩周一次的低谷的在預測上算是蠻精準的，不過這裡有個很有趣的地方，也就是在 <font color = red>?</font> 的地方，嚴重高估了觀看數值，這其實也不太能怪它預測的不精準，這一天其實是除夕，所以觀看數比預期的低很多
 
@@ -353,10 +353,10 @@ This function obtains **zero training loss**, but **large testing loss.**
 :::success
 :heavy_check_mark: **解決方法:** <br>
 1. 增加訓練資料! <br><i><font color = gray>只要有更多的訓練資料就能限制住函數的形狀，減少"freestyle"的發生</font></i><br><i><font color = gray>(</font><font color = red>不可</font><font color = gray>在作業中使用)</font></i><br>但可以使用: Data Augmentation <br><i><font color = gray>e.g. 將圖片左右翻轉、截一塊出來放大...(但是要合理)</font></i>
-![](https://i.imgur.com/MpzoSI2.png)
+![](https://i.imgur.com/MpzoSI2.png) </br></br>
 2. 給模型一些限制! <br>
 <i><font color = gray>
-要給多少限制取決於自己對問題的理解 ~~(自己通靈)~~![](https://i.imgur.com/tfp2BSP.png)<br>限制的方法: <br>
+要給多少限制取決於自己對問題的理解 ~~(自己通靈)~~![](https://i.imgur.com/tfp2BSP.png)</br></br>限制的方法: </br>
     * Less parameters, sharing parameters
     * Less features
     * Early stopping
@@ -365,7 +365,7 @@ This function obtains **zero training loss**, but **large testing loss.**
 </font></i>
 :::
 
-**CNN** <br>
+**CNN** </br>
 ![](https://i.imgur.com/DIPvlit.png) <br>
 相比一般的Fully-connected架構，CNN的限制較多，它可以找到函數較少，但它因為針對影像的特性來限制model，所以CNN在影像上的表現較好
 :::danger
@@ -409,7 +409,7 @@ This function obtains **zero training loss**, but **large testing loss.**
 
 想要知道一個點到底是local minima還是saddle point $\rightarrow$ 要知道loss function的形狀 $\rightarrow$ 但loss function極為複雜，要如何知道它的形狀呢?
 ![](https://i.imgur.com/HJYxaO6.png)
-雖然不知道 $L(\theta)$ 的樣子，但可以從 $L(\theta')$ 去逼近它 <br>
+雖然不知道 $L(\theta)$ 的樣子，但可以從 $L(\theta')$ 去逼近它 </br></br>
 ![](https://i.imgur.com/5OHPWxu.png)
 在critical point的時候，gradient為0，因此 $(\theta - \color{blue}{\theta'})^T\color{green}{g}$ 這一項為0，我們可以根據 $\frac{1}{2}(\theta - \color{blue}{\theta'}^T)\color{red}{H}(\theta - \color{blue}{\theta'})$ 這項來判斷 $\color{blue}{\theta'}$ 附近的error surface長什麼樣子，進而知道 $\color{blue}{\theta'}$ 是local minima還是saddle point<br><br>
 
@@ -421,9 +421,9 @@ This function obtains **zero training loss**, but **large testing loss.**
 
 ![](https://i.imgur.com/fT61Eb4.png)
 :::success
-:mag_right: **Example** <br>
+:mag_right: **Example** </br></br>
 ![](https://i.imgur.com/DL6UgtR.png)
-![](https://i.imgur.com/7MQ3h8Z.png)
+![](https://i.imgur.com/7MQ3h8Z.png) </br></br>
 **$\lambda_1, \lambda_2$ 的計算過程:**
 $$
 \begin{align*}
@@ -453,7 +453,7 @@ $$
 \end{align*}
 $$
 :::
-<br>
+</br>
 
 **參數可以update的方向:** <br>
 ![](https://i.imgur.com/pfVYuz7.png)
@@ -485,32 +485,32 @@ $$
 ### Batch
 
 :::info
-:paperclip: **複習**
+:paperclip: **複習** </br></br>
 ![](https://i.imgur.com/lomaHC8.png)
 :::
 1 **epoch** = see all the batches once $\rightarrow$ **Shuffle** after each epoch *(每個epoch都會重新分batch)*
 ![](https://i.imgur.com/1mCHgAx.png)
-從這一張圖我們可以看到，大的Batch雖然需要的時間比較久，但卻比較精準，而小的Batch需要的時間比較小，但比較不準，不一定會朝著正確的方向前進。**但真的是這樣嗎?，你可能沒考慮到<font color = red>平行處理</font>的問題!!**
-![](https://i.imgur.com/GSHORCy.png)
-此為實際的實驗結果，因為GPU可以平行運算，所以當batch size是1 ~ 1000時，所需要的時間是幾乎相同的，不過GPU平行運算的能力終究有限，所以當batch size大到超過一定的大小之後，需要的時間還是會隨著batch size的增大而增加的
-![](https://i.imgur.com/WMBHTUc.png)
+從這一張圖我們可以看到，大的Batch雖然需要的時間比較久，但卻比較精準，而小的Batch需要的時間比較小，但比較不準，不一定會朝著正確的方向前進。**但真的是這樣嗎?，你可能沒考慮到<font color = red>平行處理</font>的問題!!** </br></br>
+![](https://i.imgur.com/GSHORCy.png) </br></br>
+此為實際的實驗結果，因為GPU可以平行運算，所以當batch size是1 ~ 1000時，所需要的時間是幾乎相同的，不過GPU平行運算的能力終究有限，所以當batch size大到超過一定的大小之後，需要的時間還是會隨著batch size的增大而增加的 </br></br>
+![](https://i.imgur.com/WMBHTUc.png) </br></br>
 因此，大的batch size反而是比較有效率的，所以我們回到上面的這一張圖:
-![](https://i.imgur.com/DhLxMGz.png)
-這樣看起來，大的Batch的劣勢消失了，而小的Batch的優勢沒了。這樣看起來似乎大的Batch是比較好的，但這裡又出現了一個反直覺的地方了，**<font color = red>noisy</font>的gradient反而可以幫助train**
+![](https://i.imgur.com/DhLxMGz.png) </br></br>
+這樣看起來，大的Batch的劣勢消失了，而小的Batch的優勢沒了。這樣看起來似乎大的Batch是比較好的，但這裡又出現了一個反直覺的地方了，**<font color = red>noisy</font>的gradient反而可以幫助train** </br></br>
 ![](https://i.imgur.com/PVzY9fX.png)
 * Smaller batch size has better performance
 * What wrong with large batch size? $\rightarrow$ Optimization Fails
 <br>
 
 ![](https://i.imgur.com/8uGSzHD.png)
-原因在於Full Batch的時候，Loss函數是固定的，當走到critical point的時候就容易卡住，無法再得到更低的loss，但Small Batch不一樣，他每次的Loss函數都有些微的不同，如圖，雖然在<font color = green>$L^1$</font>卡住了但在<font color = blue>$L^2$</font>就有可能可以繼續train下去
+原因在於Full Batch的時候，Loss函數是固定的，當走到critical point的時候就容易卡住，無法再得到更低的loss，但Small Batch不一樣，他每次的Loss函數都有些微的不同，如圖，雖然在<font color = green>$L^1$</font>卡住了但在<font color = blue>$L^2$</font>就有可能可以繼續train下去 </br></br>
 
 ![](https://i.imgur.com/aL5CNJ2.png)
-接下來就是更弔詭的事了，經過實驗得到的數據來看，==Small Batch對於testing上有更好的表現==，即便我們努力讓Large Batch在training上跟Small Batch上有相似的Accuracy，但Large Batch在testing上還是輸給了Small Batch，也就是Large Batch上出現了overfitting，為什麼會這樣呢?
+接下來就是更弔詭的事了，經過實驗得到的數據來看，==Small Batch對於testing上有更好的表現==，即便我們努力讓Large Batch在training上跟Small Batch上有相似的Accuracy，但Large Batch在testing上還是輸給了Small Batch，也就是Large Batch上出現了overfitting，為什麼會這樣呢? </br></br>
 ![](https://i.imgur.com/kn2Qy5W.png)
 這是因為同樣是Minima，有可能是Flat Minima，也有可能是Sharp Minima，如果training data和testing data上有mismatch，在Flat Minima上的影響可能就不太大，還是會有很好的表現，但對於Sharp Minima，一點點的mismatch就是非常致命的。而很多人相信，Small Batch比起Large Batch，更容易跑到Flat Minima，一個比較直觀的解釋是，noisy的gradient在Sharp Minima可能一個不小心就跳離開了，而Flat Minima才比較容易困住它 *<font color = gray>(但這個還是個尚待研究的問題，這個解釋也不是100%正確)</font>*
 :::success
-:memo: **Summary** <br>
+:memo: **Summary** </br>
 總結一下，Small Batch和Large Batch各有優缺點，所以這也是一個要自己設定的hyperparameter
 ![](https://i.imgur.com/6w47SXm.png)
 :::
