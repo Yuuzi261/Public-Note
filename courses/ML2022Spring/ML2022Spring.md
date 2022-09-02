@@ -6,12 +6,13 @@
 
 **Q: 什麼是機器學習?**</br>
 *A: 概括來說，讓機器具備找一個函式的能力!*
-![ ](https://i.imgur.com/xNtqsVZ.png)
+![](https://i.imgur.com/xNtqsVZ.png)
 
 ### 函數的類型
 
-**上面提到機器要找一個函數，這個函數被大致分為幾種**
-* **Regression:** 輸出為一個數值<br>
+上面提到機器要找一個函數，這個函數被大致分為幾種
+
+* **Regression:** 輸出為一個數值 </br>
 ![](https://i.imgur.com/cxaTsKh.png)
 * **Classification:** 從既有的選項 *(classes/類別)* 中，選擇其一輸出
 ![](https://i.imgur.com/CKs1af4.png)
@@ -21,45 +22,52 @@
 ### 如何找一個函數
 
 **以簡單預測YouTube流量為例...**
-1. **Find with Unknown Parameters** 寫出帶有未知參數的函式
+
+#### 1. **Find with Unknown Parameters** 寫出帶有未知參數的函式
+
 ![](https://i.imgur.com/jUCKe8g.png)
-2. **Define Loss form Training Data** 定義損失函數
+
+#### 2. **Define Loss form Training Data** 定義損失函數
+
     * Loss is a function of parameters: L(b, w)
     * Loss: how good a set of value is
 
 ![](https://i.imgur.com/LyQPab9.png)
 
-Loss: $$L = \frac{1}{N}\Sigma e_n$$
+Loss: $L = \frac{1}{N}\Sigma e_n$
 
-將每一天的誤差值加總起來取平均，就能得到損失函數的值<br>
+將每一天的誤差值加總起來取平均，就能得到損失函數的值</br>
 計算誤差值的方式大致上有下列2種方法:
+
 * **MAE** Mean Absolute Error
     $e = |y - \hat{y}|$
 * **MSE** Mean Square Error
     $e = (y - \hat{y})^2$
 
-依照需求和對任務的理解作選擇<br>
+依照需求和對任務的理解作選擇</br>
 *如果* $y$ *和* $\hat{y}$ *都是機率分佈的話，則會選擇Cross-entropy(之後再說)*
 
 **Error Surface:**
 將各種參數組合出來的Loss值繪製成等高線圖
 ![](https://i.imgur.com/OWUXEpy.png)
 
-3. **Optimization** 最佳化 
+#### 3. **Optimization** 最佳化
+
 $$w^*, b^* = \arg\min\limits_{w, b}L$$
 *找一個最好的* $w$*和* $b$ *(* $w^*$ & $b^*$ *)，使得Loss的值最小*
 **Gradient Descent:**
 先遮住另一個參數，我們先看單一的參數...
 ![](https://i.imgur.com/HKcwjqt.png)
-:::info 
-$\eta$ : learning rate *(a hyperparameters 自己設定的參數)*<br>
+:::info
+$\eta$ : learning rate *(a hyperparameters 自己設定的參數)*</br>
 larning rate越高，學習越快 *(數值變化快)*
 :::
 
-如圖，Gradient Descent顯而易見的問題即是local minima問題，通常無法找到golbal minima，但老師提到local minima其實是個假議題，做Gradient Descent時會遇到的真正難題並不是local minima問題 *(之後再提Gradient Descent真正的痛點)*<br>
+如圖，Gradient Descent顯而易見的問題即是local minima問題，通常無法找到golbal minima，但老師提到local minima其實是個假議題，做Gradient Descent時會遇到的真正難題並不是local minima問題 *(之後再提Gradient Descent真正的痛點)*</br>
 單一的參數理解之後，多個參數也是相同概念...
+
 * (Randomly) Pick initial values $w^0, w^b$
-* Compute 
+* Compute
 $$
 \begin{align*}
 w^1&\leftarrow w^0-\eta\frac{\delta L}{\delta w}|_{w = w^0, b = b^0} \\
@@ -69,59 +77,63 @@ $$
 * Update $w$ and $b$ interatively
 
 ### 訓練 & 預測
+
 上面的步驟其實就是在訓練
 ![](https://i.imgur.com/Nt67jPa.png)
-如圖，在已知的資料上的最小Loss是0.48k，而在預測的數據上，Loss則是來到0.58k <br><br>
+如圖，在已知的資料上的最小Loss是0.48k，而在預測的數據上，Loss則是來到0.58k </br></br>
 ![](https://i.imgur.com/4D6qlbk.png)
-![](https://i.imgur.com/w1NUdrS.png)<br>
-根據第一次預測的結果，我們可以發現這些資料有存在週期性 *(在此為7天一循環，星期四和星期五的觀看人數都會減少)*，利用這個週期性來嘗試修改模型...<br>
+![](https://i.imgur.com/w1NUdrS.png)</br>
+根據第一次預測的結果，我們可以發現這些資料有存在週期性 *(在此為7天一循環，星期四和星期五的觀看人數都會減少)*，利用這個週期性來嘗試修改模型...</br>
 以上這些`feature * weight + bias`的模型就稱為 **Linear Models**
 
 ### 模型
+
 Linear Models很顯然是不夠的，它有著很大的限制，稱作**Model Bias**，使得這個模型無法模擬真實的狀況，因此我們需要更複雜、更有彈性的模型
 ![](https://i.imgur.com/VMYl3Pd.png)
 
 **Piecewise Linear Curves**
-上面這條紅線其實就是Piecewise Linear Curves *(分段線性曲線)*，我們可以發現這種曲線可以整理成下列的式子:<br>
+上面這條紅線其實就是Piecewise Linear Curves *(分段線性曲線)*，我們可以發現這種曲線可以整理成下列的式子:</br>
 <font color = "red">red curve</font> = constant + <font color = blue>sum of a set of blue cruve</font>
 
 ![](https://i.imgur.com/C3CjdKW.png)
 
 如圖，利用不同的<font color = blue>藍色曲線</font>加上一個常數，就形成了<font color = red>紅色分段線性曲線</font> *(<font color = red>red curve</font> = 0 + 1 + 2 + 3 curves)*
 
-**Q: 但x和y的關係不一定是Piecewise Linear Curves啊，那該怎麼辦?**<br>
+**Q: 但x和y的關係不一定是Piecewise Linear Curves啊，那該怎麼辦?**</br>
 *A: 先在曲線上取幾個點，再連起來形成Piecewise Linear Curves，只要點取得夠好或**夠多**，就能和原本的曲線非常接近*
-![](https://i.imgur.com/rdsLvdH.png) <br><br>
-**Q: 那要如何得到<font color = blue>藍色曲線</font>呢?**<br>
+![](https://i.imgur.com/rdsLvdH.png) </br></br>
+**Q: 那要如何得到<font color = blue>藍色曲線</font>呢?**</br>
 *A: 我們可以用**Sigmoid Function**來嘗試逼近它*
-![](https://i.imgur.com/HJf0UyJ.png) <br><br>
+![](https://i.imgur.com/HJf0UyJ.png) </br></br>
 而我們上面一直在講的<font color = blue>藍色曲線</font>則是叫做**Hard Sigmoid**
-![](https://i.imgur.com/r73qiKr.png) <br><br>
+![](https://i.imgur.com/r73qiKr.png) </br></br>
 透過改變<font color = blue>$w$</font>、<font color = green>$b$</font>和<font color = red>$c$</font>，就能去逼近出各種不同的Sigmoid Function
 ![](https://i.imgur.com/x87SuGf.png)
 ![](https://i.imgur.com/Y8ccLGp.png)
-![](https://i.imgur.com/t1BuUC8.png) <br><br>
+![](https://i.imgur.com/t1BuUC8.png) </br></br>
 回到這一張圖...
 ![](https://i.imgur.com/VfIYzfK.png)
-我們就成功把<font color = red>紅色分段曲線</font>表示出來了<br>
+我們就成功把<font color = red>紅色分段曲線</font>表示出來了</br>
 
 **整理一下我們的新模型:**
+
 * 單個feature
 $$y = b + wx_1\\\downarrow\\ y = b + \sum_i \color{red}{c_i}sigmoid(\color{green}{b_i} + \color{blue}{w_i}x_1)$$
 * 多個feature
+
 $$y = b + \sum_j w_jx_j\\\downarrow\\ y = b + \sum_i \color{red}{c_i}sigmoid(\color{green}{b_i} + \sum_j \color{blue}{w_{ij}}x_j)$$
-<br>
+</br>
 
 下面實際演示了這個模型...
-![](https://i.imgur.com/UQnR9LT.png) <br><br>
+![](https://i.imgur.com/UQnR9LT.png) </br></br>
 可以將 $r_1$、 $r_2$ 和 $r_3$ 的運算簡寫成如下:
-![](https://i.imgur.com/CvtALd5.png) <br><br>
+![](https://i.imgur.com/CvtALd5.png) </br></br>
 接著，將 $r_i$ 代入 $sigmoid$ 函數得到 $a_i$ (可表示成 $a = \sigma(r)$， $a$ 、 $r$ 是矩陣， $\sigma$ 是 $sigmoid$ )，最後加上 $b$ 得到 $y$ ，如下圖:
-![](https://i.imgur.com/RH9MMiw.png) <br><br>
+![](https://i.imgur.com/RH9MMiw.png) </br></br>
 經過整理後得到 $y$ 的線性代數表達法:
-![](https://i.imgur.com/w42Xv6C.png) <br><br>
+![](https://i.imgur.com/w42Xv6C.png) </br></br>
 接著將每個未知參數組成一個很長的向量矩陣 $\theta$:
-![](https://i.imgur.com/Dd67qNp.png) <br><br>
+![](https://i.imgur.com/Dd67qNp.png) </br></br>
 這樣我們就重新定義了機器學習的第一步
 ![](https://i.imgur.com/DkoyRrH.png)
 
@@ -137,8 +149,8 @@ $$L(w, b)\rightarrow L(\theta)$$
 #### 最佳化
 
 $$
-\theta^* = \arg\min\limits_{\theta}L, 
-\theta = 
+\theta^* = \arg\min\limits_{\theta}L,
+\theta =
 \left[
 \begin{matrix}
 & \theta_1\\
@@ -148,10 +160,12 @@ $$
 \end{matrix}
 \right]
 $$
+
 * (Randomly) Pick initial values $\theta^0$
 * Compute gradient $g$
+
 $$
-g = 
+g =
 \left[
 \begin{matrix}
 & \frac{\delta L}{\delta\theta_1}|_{\theta = \theta^0} \\
@@ -182,6 +196,7 @@ g =
 \right]
 $$
 $$g = \nabla L(\theta^0), \theta^1 = \theta^0 - \color{red}{\eta}g$$
+
 * 不停地做直到gradient為零向量 *(Zero Vector)* 或不想做為止
 
 **實作上，我們會將N筆資料切成一個一個Batch...**
@@ -189,40 +204,46 @@ $$g = \nabla L(\theta^0), \theta^1 = \theta^0 - \color{red}{\eta}g$$
 每做一個Batch就會**update**一次，把所有Batch都做完一輪稱為**1 epoch**
 
 :::success
-:mag_right: **Example**
+:mag_right: **Example** </br></br>
+
 #### Example 1
+
 * 10000 examples (N = 10000)
-* Batch size is 10 (B = 10)<br>
-How many update in **1 epoch**?<br>
-*A: 10000 / 10 = **1000 updates***
+* Batch size is 10 (B = 10)</br>
+How many update in **1 epoch**?</br>
+*A: 10000 / 10 = **1000 updates*** </br></br>
+
 #### Example 2
+
 * 1000 examples (N = 1000)
-* Batch size is 100 (B = 100)<br>
-How many update in **1 epoch**?<br>
+* Batch size is 100 (B = 100)</br>
+How many update in **1 epoch**?</br>
 *A: 1000 / 100 = **10 updates***
 :::
 
 ### ReLU
 
-其實不一定要像上面透過**Sigmoid**函數來近似，也可以將<b><font color = blue>Hard Sigmoid</font></b>看成兩個 **Rectified Linear Unit (ReLU)** 的加總
+其實不一定要像上面透過**Sigmoid**函數來近似，也可以將
+**<font color = blue>Hard Sigmoid</font>**
+看成兩個 **Rectified Linear Unit (ReLU)** 的加總
 ![](https://i.imgur.com/2a4G8kX.png)
 ![](https://i.imgur.com/yAt23h2.png)
 :::info
 :information_source: 這裡的 $\color{red}{2}i$ 是因為要合成1條**Hard Sigmoid**需要2條**ReLU**
 :::
-<b><font color = blue>Q: 那這上面兩個哪個比較好呢?</font></b><br>
+**<font color = blue>Q: 那這上面兩個哪個比較好呢?</font>** </br>
 *A: ReLU，老師接下來的實驗都選擇了ReLU，顯然ReLU比較好 (至於為什麼，之後再講)*
 
 ### 實際實驗結果
 
 ![](https://i.imgur.com/LiT9EjM.png)
-越多的ReLU可以製造越複雜的曲線，不過到了1000個ReLU之後，雖然在訓練資料上有更低的Loss，但在預測上就沒有太大的進步<br><br>
+越多的ReLU可以製造越複雜的曲線，不過到了1000個ReLU之後，雖然在訓練資料上有更低的Loss，但在預測上就沒有太大的進步</br></br>
 接著我們繼續改進模型...
 ![](https://i.imgur.com/v6GvCLS.png)
 可以多做幾次: $x\rightarrow a\rightarrow a'\rightarrow \cdots$
-這個也是**Hyper Parameter**，要自己決定做幾層，下面有實際的實驗數據...<br><br>
+這個也是**Hyper Parameter**，要自己決定做幾層，下面有實際的實驗數據...</br></br>
 ![](https://i.imgur.com/slfgKXg.png)
-增加層數，在訓練資料上Loss有顯著的降低，在預測上也有進步 <br><br>
+增加層數，在訓練資料上Loss有顯著的降低，在預測上也有進步 </br></br>
 ![](https://i.imgur.com/QPVUxzF.png)
 可以發現在兩周一次的低谷的在預測上算是蠻精準的，不過這裡有個很有趣的地方，也就是在 <font color = red>?</font> 的地方，嚴重高估了觀看數值，這其實也不太能怪它預測的不精準，這一天其實是除夕，所以觀看數比預期的低很多
 
@@ -230,7 +251,7 @@ How many update in **1 epoch**?<br>
 
 ![](https://i.imgur.com/8YxmaY4.png)
 :::info
-Many Neuron $\rightarrow$ Neuron Network<br>
+Many Neuron $\rightarrow$ Neuron Network</br>
 Many hidden layer $\rightarrow$ Deep $\rightarrow$ Deep Learning
 :::
 於是人們把類神經網路越疊越多、越疊越深...
@@ -240,10 +261,10 @@ Many hidden layer $\rightarrow$ Deep $\rightarrow$ Deep Learning
 不過要訓練這麼深的Network是有訣竅的，這個之後再講...
 :::
 
-**Q: 要逼近一個複雜的函數，實際上只要有夠多的ReLU和Sigmoid就可以逼近任何的連續函數，理論上只要一排ReLU或Sigmoid夠多就足夠了，為何要深呢? 胖不行嗎? 只是單純"Deep" Network比"Fat" Network看起來更厲害嗎? 為何我們不要把Network變胖，而是變深呢?**<br>
+**Q: 要逼近一個複雜的函數，實際上只要有夠多的ReLU和Sigmoid就可以逼近任何的連續函數，理論上只要一排ReLU或Sigmoid夠多就足夠了，為何要深呢? 胖不行嗎? 只是單純"Deep" Network比"Fat" Network看起來更厲害嗎? 為何我們不要把Network變胖，而是變深呢?**</br>
 *A: 好問題! 之後會再講*
 
-**Q: Deep Network越深就一定越好嗎?**<br>
+**Q: Deep Network越深就一定越好嗎?**</br>
 *A: 不一定，有可能會出現 **Overfitting(過度擬合)** 的現象*
 ![](https://i.imgur.com/ebPGDAX.png)
 
@@ -272,14 +293,15 @@ F -->|overfitting| H
 F -->|mismatch| I
 D ---|need trade-off| H
 ```
+
 :::info
 :information_source: trade-off: split your training data into training set and validation set for model selection
 :::
 
-<br>
+</br>
 
 :::warning
-:pushpin: **狀況1: 訓練資料的Loss就很大!!**<br>
+:pushpin: **狀況1: 訓練資料的Loss就很大!!** </br>
 *可能是Model Bias或Optimization Issue*
 :::
 
@@ -291,14 +313,14 @@ D ---|need trade-off| H
 :::
 ![](https://i.imgur.com/dpDi3zI.png)
 :::success
-:heavy_check_mark: **解決方法:** 重新設計model讓它更有 "彈性" !<br>
+:heavy_check_mark: **解決方法:** 重新設計model讓它更有 "彈性" !</br>
 ![](https://i.imgur.com/Iy9MJc1.png)
 :::
 
 ### Optimization Issue
 
-目前我們只學到gradient descent的方法做optimization，這個方法有個顯而易見的問題: 通常無法找到golbal minima!<br>
-![](https://i.imgur.com/7oOEN6C.png)<br>
+目前我們只學到gradient descent的方法做optimization，這個方法有個顯而易見的問題: 通常無法找到golbal minima! </br>
+![](https://i.imgur.com/7oOEN6C.png) </br>
 這個model裡面確實有存在一個函數的Loss是夠低的，但gradient descent卻沒有給我們這個函數
 :::info
 :paperclip: 老師這裡也下了一個比喻: 就好比你在大海撈針，針確實在海裡，但我們卻沒辦法把針撈起來(找不到QAQ)
@@ -315,7 +337,7 @@ D ---|need trade-off| H
 ![](https://i.imgur.com/83frpJu.png)
 試著分析一下，首先我們看到在Testing Data這方面，56-layer的Loss比20-layer的Loss高，先別以為就是overfitting，我們再看一下Training Data，發現56-layer的Loss還是比20-layer來得高，如果是overfitting理論上56-layer在Training Data上應該要比20-layer有更低的Loss，==但這個狀況卻是不管Testing Data還是Training Data都是56-layer有更高的Loss，代表這是Optimization Issue，56-layer沒做好optimization，找不到更低Loss的函數，所以Loss才會比20-layer高!==
 :::info
-:bulb: **老師的建議**<br>
+:bulb: **老師的建議** </br>
 遇到沒做過的問題，可以先跑一些比較小、比較淺的network，或是用一些不是deep learning的方法 *(e.g. linear model, support vector machine...)* ，這些model是比較容易做optimize的，比較不會有optimization失敗的問題，之後便於和深的model比較Loss
 :::
 這也是Optimization Issue，發生在5 layer
@@ -327,13 +349,13 @@ D ---|need trade-off| H
 ### Overfitting & Mismatch
 
 :::warning
-:pushpin: **狀況2: 訓練資料的Loss小，但是測試資料的Loss大!!**<br>
+:pushpin: **狀況2: 訓練資料的Loss小，但是測試資料的Loss大!!**</br>
 *可能是Overfitting或Mismatch*
 :::
 下面舉一個極端的例子...
 :::success
-:mag_right: **An extreme example** <br>
-Training data: 
+:mag_right: **An extreme example** </br>
+Training data:
 $$\{(x^1, \hat{y^1}), (x^2, \hat{y^2}), \dots, (x^N, \hat{y^N})\}$$
 Model:
 $$
@@ -345,44 +367,49 @@ random & otherwise
 $$
 This function obtains **zero training loss**, but **large testing loss.**
 :::
-上面可以看到，這個函數簡直一無是處，如果訓練資料有相同的 $x^i$ 就輸出跟訓練資料一模一樣的 $\hat{y^i}$ ，如果沒有，就隨機輸出。雖然在training data上的loss是0，但拿到testing data上的表現是極為糟糕的<br><br>
+上面可以看到，這個函數簡直一無是處，如果訓練資料有相同的 $x^i$ 就輸出跟訓練資料一模一樣的 $\hat{y^i}$ ，如果沒有，就隨機輸出。雖然在training data上的loss是0，但拿到testing data上的表現是極為糟糕的</br></br>
 
 **日常會遇到的例子:**
 ![](https://i.imgur.com/0TRvDxM.png)
 太過有彈性的model在沒有訓練到的地方就會有 **"freestyle"** 導致在Testing data有較大的Loss
 :::success
-:heavy_check_mark: **解決方法:** <br>
-1. 增加訓練資料! <br><i><font color = gray>只要有更多的訓練資料就能限制住函數的形狀，減少"freestyle"的發生</font></i><br><i><font color = gray>(</font><font color = red>不可</font><font color = gray>在作業中使用)</font></i><br>但可以使用: Data Augmentation <br><i><font color = gray>e.g. 將圖片左右翻轉、截一塊出來放大...(但是要合理)</font></i>
+:heavy_check_mark: **解決方法:** </br>
+
+1. 增加訓練資料! </br>*<font color = gray>只要有更多的訓練資料就能限制住函數的形狀，減少"freestyle"的發生</font>*</br>*<font color = gray>(</font><font color = red>不可</font><font color = gray>在作業中使用)</font>*</br>但可以使用: Data Augmentation </br>*<font color = gray>e.g. 將圖片左右翻轉、截一塊出來放大...(但是要合理)</font>*
 ![](https://i.imgur.com/MpzoSI2.png) </br></br>
-2. 給模型一些限制! <br>
-<i><font color = gray>
-要給多少限制取決於自己對問題的理解 ~~(自己通靈)~~![](https://i.imgur.com/tfp2BSP.png)</br></br>限制的方法: </br>
+2. 給模型一些限制! </br>
+*<font color = gray>要給多少限制取決於自己對問題的理解 ~~(自己通靈)~~</font>*
+![](https://i.imgur.com/tfp2BSP.png)</br></br>
+*<font color = gray>限制的方法:</font>* </br>
+<font color = gray>
+
     * Less parameters, sharing parameters
     * Less features
     * Early stopping
     * Regularization
     * Dropout
-</font></i>
+
+</font>
 :::
 
 **CNN** </br>
-![](https://i.imgur.com/DIPvlit.png) <br>
+![](https://i.imgur.com/DIPvlit.png) </br>
 相比一般的Fully-connected架構，CNN的限制較多，它可以找到函數較少，但它因為針對影像的特性來限制model，所以CNN在影像上的表現較好
 :::danger
-:x: **注意 限制不可過多** <br>
-限制過多 $\rightarrow$ model bias問題 <br>
+:x: **注意 限制不可過多** </br>
+限制過多 $\rightarrow$ model bias問題 </br>
 ![](https://i.imgur.com/BC6roFk.png)
 :::
 
 **Bias-Complexity Trade-off**
 ![](https://i.imgur.com/yZHIZLO.png)
 
-**Cross Validation** <br>
+**Cross Validation** </br>
 為了避免糾結在public testing set上面，應該將training set拆出validation set *(通常9:1)* 根據validation set出來的loss來挑選模型
 ![](https://i.imgur.com/6V0nn45.png)
 但是這樣可能會遇到一個問題，如果分得不好，剛剛好奇怪的data都分到validation set，導致結果很差怎麼辦? $\rightarrow$ **N-fold Cross Validation** !!
 
-**N-fold Cross Validation** <br>
+**N-fold Cross Validation** </br>
 先將training set分成N等份，將其中一份拿來當validation set，其餘當training set，重複N次，將每個model每次的loss加總起來平均並比較，找到loss最小的model，最後再把所有的training set給loss最低的model，就可以拿去跑testing set了，下圖以N = 3舉例說明...
 ![](https://i.imgur.com/XAQebmv.png)
 
@@ -398,10 +425,11 @@ This function obtains **zero training loss**, but **large testing loss.**
 隨著參數不斷update，training loss卻不再下降至滿意的數值，甚至是一開始model就訓練不起來...$\rightarrow$ 走到了一個地方，參數對loss的微分為0，使得gradient descent沒辦法再update參數
 ![](https://i.imgur.com/3fre5ie.png)
 :::warning
-:warning: **注意** <br>
+:warning: **注意** </br>
 這個時候通常會想到local minima問題，但事實上並不是只有local minima的gradient是0，比如說: **鞍點 (saddle point)**，這些gradient是0的地方，我們通稱 **關鍵點 (critical point)**
 :::
 ![](https://i.imgur.com/ZLGLis4.png)
+
 * **local minima:** :x: no way to go
 * **saddle point:** :heavy_check_mark: can escape
 
@@ -411,13 +439,13 @@ This function obtains **zero training loss**, but **large testing loss.**
 ![](https://i.imgur.com/HJYxaO6.png)
 雖然不知道 $L(\theta)$ 的樣子，但可以從 $L(\theta')$ 去逼近它 </br></br>
 ![](https://i.imgur.com/5OHPWxu.png)
-在critical point的時候，gradient為0，因此 $(\theta - \color{blue}{\theta'})^T\color{green}{g}$ 這一項為0，我們可以根據 $\frac{1}{2}(\theta - \color{blue}{\theta'}^T)\color{red}{H}(\theta - \color{blue}{\theta'})$ 這項來判斷 $\color{blue}{\theta'}$ 附近的error surface長什麼樣子，進而知道 $\color{blue}{\theta'}$ 是local minima還是saddle point<br><br>
+在critical point的時候，gradient為0，因此 $(\theta - \color{blue}{\theta'})^T\color{green}{g}$ 這一項為0，我們可以根據 $\frac{1}{2}(\theta - \color{blue}{\theta'}^T)\color{red}{H}(\theta - \color{blue}{\theta'})$ 這項來判斷 $\color{blue}{\theta'}$ 附近的error surface長什麼樣子，進而知道 $\color{blue}{\theta'}$ 是local minima還是saddle point</br></br>
 
 :::info
 [:information_source: 如何計算矩陣的特徵值(eigen values)](https://silverwind1982.pixnet.net/blog/post/154593170)
 :::
 
-**由Hessian判斷關鍵點:** <br>
+**由Hessian判斷關鍵點:** </br>
 
 ![](https://i.imgur.com/fT61Eb4.png)
 :::success
@@ -427,7 +455,7 @@ This function obtains **zero training loss**, but **large testing loss.**
 **$\lambda_1, \lambda_2$ 的計算過程:**
 $$
 \begin{align*}
-&\color{red}{H} = 
+&\color{red}{H} =
 \left[
 \begin{matrix}
 & 0 & -2 \\
@@ -455,11 +483,11 @@ $$
 :::
 </br>
 
-**參數可以update的方向:** <br>
+**參數可以update的方向:** </br>
 ![](https://i.imgur.com/pfVYuz7.png)
 簡單來說， $\theta = \color{blue}{\theta'} + u$ 就可以讓loss變小
 :::success
-:mag_right: **Example** <br>
+:mag_right: **Example** </br>
 ![](https://i.imgur.com/TOPpcJH.png)
 :::
 :::danger
@@ -468,13 +496,13 @@ $$
 
 ### Saddle Point v.s. Local Minima
 
-**Q: 既然saddle point比較不可怕，那我們如果比較常遇到的是saddle point，是不是就能比較不用擔心? 到底哪個常見呢?** <br>
+**Q: 既然saddle point比較不可怕，那我們如果比較常遇到的是saddle point，是不是就能比較不用擔心? 到底哪個常見呢?** </br>
 *A: [我們先進一段小故事! (魔法師狄奧倫娜)](https://aijianggu.com/collect/835222.html)*
-<br><br>
+</br></br>
 這個故事給我們了一個啟發: 三維空間無路可走的地方，在四維或是更高維的空間是不是有可能還有路可以走呢?
 
 ![](https://i.imgur.com/fqHKRXF.png)
-如圖，在二維空間中看似local minima的地方，在三維空間中卻可能是saddle point，在動輒有百萬、千萬參數 *(百萬、千萬維度)* 的model中，是不是其實有很多路可以走呢? <br>
+如圖，在二維空間中看似local minima的地方，在三維空間中卻可能是saddle point，在動輒有百萬、千萬參數 *(百萬、千萬維度)* 的model中，是不是其實有很多路可以走呢? </br>
 
 **真實實驗案例:**
 ![](https://i.imgur.com/HDet9Ye.png)
@@ -498,9 +526,10 @@ $$
 ![](https://i.imgur.com/DhLxMGz.png) </br></br>
 這樣看起來，大的Batch的劣勢消失了，而小的Batch的優勢沒了。這樣看起來似乎大的Batch是比較好的，但這裡又出現了一個反直覺的地方了，**<font color = red>noisy</font>的gradient反而可以幫助train** </br></br>
 ![](https://i.imgur.com/PVzY9fX.png)
+
 * Smaller batch size has better performance
 * What wrong with large batch size? $\rightarrow$ Optimization Fails
-<br>
+</br>
 
 ![](https://i.imgur.com/8uGSzHD.png)
 原因在於Full Batch的時候，Loss函數是固定的，當走到critical point的時候就容易卡住，無法再得到更低的loss，但Small Batch不一樣，他每次的Loss函數都有些微的不同，如圖，雖然在<font color = green>$L^1$</font>卡住了但在<font color = blue>$L^2$</font>就有可能可以繼續train下去 </br></br>
@@ -518,15 +547,15 @@ $$
 ### Momentum
 
 假設error surface如下圖中的斜坡，在物理的世界中，球不一定會滾到critical point就停下來，而是會繼續滾下去，甚至動量足夠的話，還可能可以越過小山丘，往更低處前進
-![](https://i.imgur.com/vG8dFUT.png) <br><br>
-**一般Gradient Descent:** <br>
+![](https://i.imgur.com/vG8dFUT.png) </br></br>
+**一般Gradient Descent:** </br>
 基本上就是一直重複算出gradient，然後往gradient的反方向移動
-![](https://i.imgur.com/GIhMoLY.png) <br><br>
-**Gradient + Gradient Descent:** <br>
+![](https://i.imgur.com/GIhMoLY.png) </br></br>
+**Gradient + Gradient Descent:** </br>
 不僅僅考慮算出來的gradient，還要考慮上一步!
-![](https://i.imgur.com/SwtyPA5.png) <br><br>
+![](https://i.imgur.com/SwtyPA5.png) </br></br>
 
-整理一下上面的式子... <br>
+整理一下上面的式子... </br>
 $m^i$ is the weighted sum of all the pervious gradient: $g^0, g^1, \dots, g^{i-1}$
 $$
 \begin{align*}
@@ -535,7 +564,7 @@ m^1 &= -\eta g^0 \\
 m^2 &= -\lambda\eta g^0 - \eta g^1
 \end{align*}
 $$
-<br>
+</br>
 
 換成一開始的圖像來看的話，確實有點像物理的小球那樣，有機會滾到更低的地方
 ![](https://i.imgur.com/YWNxanc.png)
