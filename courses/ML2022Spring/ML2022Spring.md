@@ -60,8 +60,12 @@ larning rate越高，學習越快 *(數值變化快)*
 單一的參數理解之後，多個參數也是相同概念...
 * (Randomly) Pick initial values $w^0, w^b$
 * Compute 
-$$w^1\leftarrow w^0-\eta\frac{\delta L}{\delta w}|_{w = w^0, b = b^0}$$
-$$b^1\leftarrow b^0-\eta\frac{\delta L}{\delta b}|_{w = w^0, b = b^0}$$
+$$
+\begin{align*}
+w^1&\leftarrow w^0-\eta\frac{\delta L}{\delta w}|_{w = w^0, b = b^0} \\
+b^1&\leftarrow b^0-\eta\frac{\delta L}{\delta b}|_{w = w^0, b = b^0}
+\end{align*}
+$$
 * Update $w$ and $b$ interatively
 
 ### 訓練 & 預測
@@ -422,16 +426,15 @@ This function obtains **zero training loss**, but **large testing loss.**
 ![](https://i.imgur.com/7MQ3h8Z.png)
 **$\lambda_1, \lambda_2$ 的計算過程:**
 $$
-\color{red}{H} = 
+\begin{align*}
+&\color{red}{H} = 
 \left[
 \begin{matrix}
 & 0 & -2 \\
 & -2 & 0 &
 \end{matrix}
 \right] \\
-$$
-$$
-det{
+&det{
 \left(
 \left[
 \begin{matrix}
@@ -441,10 +444,13 @@ det{
 \right]
 \right)
 } = 0
+\end{align*}
 $$
 $$
-∴ \lambda^2 - 4 = 0, \quad\lambda^2 = 4, \quad\lambda = \pm 2 \\
-∴ \lambda_1 = 2, \quad\lambda_2 = -2
+\begin{align*}
+∴& \lambda^2 - 4 = 0, \quad\lambda^2 = 4, \quad\lambda = \pm 2 \\
+∴& \lambda_1 = 2, \quad\lambda_2 = -2
+\end{align*}
 $$
 :::
 <br>
