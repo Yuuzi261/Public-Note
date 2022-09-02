@@ -500,10 +500,36 @@ $$
 原因在於Full Batch的時候，Loss函數是固定的，當走到critical point的時候就容易卡住，無法再得到更低的loss，但Small Batch不一樣，他每次的Loss函數都有些微的不同，如圖，雖然在<font color = green>$L^1$</font>卡住了但在<font color = blue>$L^2$</font>就有可能可以繼續train下去
 
 ![](https://i.imgur.com/aL5CNJ2.png)
-接下來就是更弔詭的事了，經過實驗得到的數據來看，Small Batch對於testing上有更好的表現，即便我們努力讓Large Batch在training上跟Small Batch上有相似的Accuracy，但Large Batch在testing上還是輸給了Small Batch，也就是Large Batch上出現了overfitting，為什麼會這樣呢?
+接下來就是更弔詭的事了，經過實驗得到的數據來看，==Small Batch對於testing上有更好的表現==，即便我們努力讓Large Batch在training上跟Small Batch上有相似的Accuracy，但Large Batch在testing上還是輸給了Small Batch，也就是Large Batch上出現了overfitting，為什麼會這樣呢?
 ![](https://i.imgur.com/kn2Qy5W.png)
 這是因為同樣是Minima，有可能是Flat Minima，也有可能是Sharp Minima，如果training data和testing data上有mismatch，在Flat Minima上的影響可能就不太大，還是會有很好的表現，但對於Sharp Minima，一點點的mismatch就是非常致命的。而很多人相信，Small Batch比起Large Batch，更容易跑到Flat Minima，一個比較直觀的解釋是，noisy的gradient在Sharp Minima可能一個不小心就跳離開了，而Flat Minima才比較容易困住它 *<font color = gray>(但這個還是個尚待研究的問題，這個解釋也不是100%正確)<font>*
 :::success
-:memo: **Summary**
+:memo: **Summary** <br>
+總結一下，Small Batch和Large Batch各有優缺點，所以這也是一個要自己設定的hyperparameter
 ![](https://i.imgur.com/6w47SXm.png)
 :::
+
+### Momentum
+
+假設error surface如下圖中的斜坡，在物理的世界中，球不一定會滾到critical point就停下來，而是會繼續滾下去，甚至動量足夠的話，還可能可以越過小山丘，往更低處前進
+![](https://i.imgur.com/vG8dFUT.png) <br><br>
+**一般Gradient Descent:** <br>
+基本上就是一直重複算出gradient，然後往gradient的反方向移動
+![](https://i.imgur.com/GIhMoLY.png) <br><br>
+**Gradient + Gradient Descent:** <br>
+不僅僅考慮算出來的gradient，還要考慮上一步!
+![](https://i.imgur.com/SwtyPA5.png) <br><br>
+
+整理一下上面的式子... <br>
+$m^i$ is the weighted sum of all the pervious gradient: $g^0, g^1, \dots, g^{i-1}$
+$$
+\begin{align*}
+m^0 &= 0 \\
+m^1 &= -\eta g^0 \\
+m^2 &= -\lambda\eta g^0 - \eta g^1
+\end{align*}
+$$
+<br>
+
+換成一開始的圖像來看的話，確實有點像物理的小球那樣，有機會滾到更低的地方
+![](https://i.imgur.com/YWNxanc.png)
