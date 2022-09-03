@@ -87,4 +87,4 @@
 ## STEP7. 更換Windows Terminal的背景 設定透明度．．．
 
 1. 這部份很簡單，甚至不用操作JSON檔，所以就不詳細寫了，只要在Windows Terminal設定介面依照自己的喜好進行設定就可以了
-![](https://i.imgur.com/PtiE2cX.png)
+![](https://i.imgur.com/k9sZ0TP.png)
