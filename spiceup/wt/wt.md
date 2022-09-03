@@ -8,11 +8,12 @@
 ![](https://i.imgur.com/NMYgb7U.png)
 
 :::warning
-:warning: **注意** <br>
+:warning: **注意** </br>
 這個PowerShell不是Windows內建的"Windows PowerShell"
 :::
 
 ## STEP2. 將PowerShell設為預設設定檔(選)
+
 1. 打開Windows Terminal
 2. 開啟設定
 3. 將"預設設定檔"欄位改成"PowerShell"
@@ -32,9 +33,11 @@
 2. 點選"Get Started"，右方欄位找到"Installation"，這裡以Windows為例，所以點選"Windows"
 ![](https://i.imgur.com/CvnoLuy.png)
 3. 往下找到這行指令直接複製貼上到Windows Terminal裡
-```
-winget install JanDeDobbeleer.OhMyPosh -s winget
-```
+
+    ```bash
+    winget install JanDeDobbeleer.OhMyPosh -s winget
+    ```
+
 4. 安裝好之後大概會像這樣，中途如果有停下來直接打"Y"同意就好
 ![](https://i.imgur.com/XWccLVu.png)
 5. 重啟Windows Terminal
@@ -64,9 +67,11 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 ![](https://i.imgur.com/pBdsu6J.png)
 ![](https://i.imgur.com/v3x3mNK.png)
 2. 官網右方欄位找到"Customize"，複製以下指令到設定檔並存檔，接著輸入`. $PROFILE`重新載入設定檔
-```
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/jandedobbeleer.omp.json" | Invoke-Expression
-```
+
+    ```bash
+    oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/jandedobbeleer.omp.json" | Invoke-Expression
+    ```
+
 3. 如果成功的話重啟後會看到這樣的畫面:
 ![](https://i.imgur.com/E2T7hga.png)
 
@@ -79,7 +84,7 @@ oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/jandedobbeleer.omp.json" | 
 3. 輸入`. $PROFILE`重新載入設定檔之後，可以發現變成自己設定的主題了
 ![](https://i.imgur.com/yLlGi8f.png)
 
-## STEP7. 更換Windows Terminal的背景 設定透明度...
+## STEP7. 更換Windows Terminal的背景 設定透明度．．．
 
 1. 這部份很簡單，甚至不用操作JSON檔，所以就不詳細寫了，只要在Windows Terminal設定介面依照自己的喜好進行設定就可以了
 ![](https://i.imgur.com/PtiE2cX.png)
