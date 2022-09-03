@@ -579,7 +579,7 @@ $$
 ✋**修但幾咧** </br>
 Q: 既然說loss卡住其實很少是因為卡在critical point，那麼前面的這張圖是怎麼一回是?
 ![](https://i.imgur.com/HDet9Ye.png) </br></br>
-*A: 其實要訓練參數到很接近critical point，用一般的gradient descent其實是做不到的，要出現這樣圖要有特別的方法，正因為如此，平常我們要遇到critical point是很困難的*
+*A: 其實要訓練參數到很接近critical point，用一般的gradient descent是做不到的，要出現這樣圖要有特別的方法，正因為如此，平常我們要遇到critical point是很困難的*
 :::
 
 來看看下面這張error surface，這個橢圓形的error surface在縱軸的地方坡度非常陡峭，橫軸的地方則坡度非常平緩，雖然這是個構造單純的error surface，但gradient descent卻不見得可以把它做好
