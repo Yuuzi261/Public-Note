@@ -573,7 +573,7 @@ $$
 
 上面講到了critical point的問題，但其實在訓練Network的時候，critical point往往不是最大的障礙...
 ![](https://i.imgur.com/o3jNWTA.png)
-當我們看到loss不再繼續往下掉的時候，可能會以為是走到了critical point，gradient趨近於0，但是gradient真的變得很小了嗎?從上面的圖片可以看出，在loss減少的曲線這麼平緩的時候，gradient其實並沒有很小，甚至到最後還有突然變多一點，那為什麼loss遲遲無法降低呢?其中一個可視化的例子就是左上圖，在一個峽谷中間反覆橫跳，進不去峽谷裡面。而通常在真的走到critical point之前，loss就會像這樣卡住了 </br></br>
+當我們看到loss不再繼續往下掉的時候，可能會以為是走到了critical point，gradient趨近於0，但是gradient真的變得很小了嗎?從上面的圖片可以看出，==在loss減少的曲線這麼平緩的時候，gradient其實並沒有很小==，甚至到最後還有突然變多一點，那為什麼loss遲遲無法降低呢?其中一個可視化的例子就是左上圖，在一個峽谷中間反覆橫跳，進不去峽谷裡面。而通常在真的走到critical point之前，loss就會像這樣卡住了 </br></br>
 
 :::success
 ✋**修但幾咧** </br>
