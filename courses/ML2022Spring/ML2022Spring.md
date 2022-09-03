@@ -571,6 +571,8 @@ $$
 
 ## 類神經網路訓練不起來怎麼辦 (三)：自動調整學習速率 (Learning Rate)
 
+### 固定的 Learning Rate
+
 上面講到了critical point的問題，但其實在訓練Network的時候，critical point往往不是最大的障礙...
 ![](https://i.imgur.com/o3jNWTA.png)
 當我們看到loss不再繼續往下掉的時候，可能會以為是走到了critical point，gradient趨近於0，但是gradient真的變得很小了嗎?從上面的圖片可以看出，==在loss減少的曲線這麼平緩的時候，gradient其實並沒有很小==，甚至到最後還有突然變多一點，那為什麼loss遲遲無法降低呢?其中一個可視化的例子就是左上圖，在一個峽谷中間反覆橫跳，進不去峽谷裡面。而通常在真的走到critical point之前，loss就會像這樣卡住了 </br></br>
@@ -585,7 +587,7 @@ Q: 既然說loss卡住其實很少是因為卡在critical point，那麼前面�
 來看看下面這張error surface，這個橢圓形的error surface在縱軸的地方坡度非常陡峭，橫軸的地方則坡度非常平緩，雖然這是個構造單純的error surface，但gradient descent卻不見得可以把它做好
 ![](https://i.imgur.com/qOnSjGw.png) </br></br>
 
-先來看看 $\eta = 10^{-2}$ 的狀況:
+先來看看 $\eta = 10^{-2}$ 的狀況: </br>
 ![](https://i.imgur.com/kOxz1Jk.png) </br>
 參數在山地的兩端不斷震盪掉不下去，這時你可能會覺得，這是 $\eta$ 設定太大的緣故，只要調低learning rate就好了啊! </br></br>
 
@@ -596,3 +598,14 @@ Q: 既然說loss卡住其實很少是因為卡在critical point，那麼前面�
 :::info
 💡固定的learning rate顯然是不夠好的，learning rate應該要為每個參數做客製化!
 :::
+
+### 客製化 Learning Rate
+
+主要的大方向就是，在比較陡峭的地方我們希望learning rate小一點，在平緩的地方我們希望learning rate大一點，所以我們要改造一下算式...
+![](https://i.imgur.com/WK7Kevb.png)
+將 $\eta$ 改成 $\frac{\eta}{\sigma_i^t}$ 讓learning rate可以為每個參數做客製化
+
+那如何求這個 $\sigma_i^t$ 呢?常見的方法是算gradient的Root Mean Square:
+![](https://i.imgur.com/WMxn0CQ.png)
+
+<!-- TODO: 15:50 -->
