@@ -568,3 +568,31 @@ $$
 
 換成一開始的圖像來看的話，確實有點像物理的小球那樣，有機會滾到更低的地方
 ![](https://i.imgur.com/YWNxanc.png)
+
+## 類神經網路訓練不起來怎麼辦 (三)：自動調整學習速率 (Learning Rate)
+
+上面講到了critical point的問題，但其實在訓練Network的時候，critical point往往不是最大的障礙...
+![](https://i.imgur.com/o3jNWTA.png)
+當我們看到loss不再繼續往下掉的時候，可能會以為是走到了critical point，gradient趨近於0，但是gradient真的變得很小了嗎?從上面的圖片可以看出，在loss減少的曲線這麼平緩的時候，gradient其實並沒有很小，甚至到最後還有突然變多一點，那為什麼loss遲遲無法降低呢?其中一個可視化的例子就是左上圖，在一個峽谷中間反覆橫跳，進不去峽谷裡面。而通常在真的走到critical point之前，loss就會像這樣卡住了 </br></br>
+
+:::success
+✋**修但幾咧** </br>
+Q: 既然說loss卡住其實很少是因為卡在critical point，那麼前面的這張圖是怎麼一回是?
+![](https://i.imgur.com/HDet9Ye.png) </br></br>
+*A: 其實要訓練參數到很接近critical point，用一般的gradient descent其實是做不到的，要出現這樣圖要有特別的方法，正因為如此，平常我們要遇到critical point是很困難的*
+:::
+
+來看看下面這張error surface，這個橢圓形的error surface在縱軸的地方坡度非常陡峭，橫軸的地方則坡度非常平緩，雖然這是個構造單純的error surface，但gradient descent卻不見得可以把它做好
+![](https://i.imgur.com/qOnSjGw.png) </br></br>
+
+先來看看 $\eta = 10^{-2}$ 的狀況:
+![](https://i.imgur.com/kOxz1Jk.png) </br>
+參數在山地的兩端不斷震盪掉不下去，這時你可能會覺得，這是 $\eta$ 設定太大的緣故，只要調低learning rate就好了啊! </br></br>
+
+於是不停地的調低至 $\eta = 10^{-7}$ 直到參數不再震盪:
+![](https://i.imgur.com/B5GRujJ.png) </br>
+但這時問題又來了，當坡度非常平滑的時候，這麼小的learning rate根本無法順利地走到目標
+
+:::info
+💡固定的learning rate顯然是不夠好的，learning rate應該要為每個參數做客製化!
+:::
