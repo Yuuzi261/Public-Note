@@ -1,4 +1,4 @@
-# 安裝Python
+# 安裝Python [🔰初學者向]
 
 ## 下載Python
 
