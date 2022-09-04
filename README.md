@@ -3,7 +3,7 @@
 ## install
 
 * [安裝 Python](https://hackmd.io/@Yuuzi/install-python)
-* [安裝 Visual Studio Code](https://github.com/GoldOrange261/Public-Note/blob/main/install/vscode.md)
+* [安裝 Visual Studio Code](https://hackmd.io/@Yuuzi/install-vscode)
 * [安裝 Git](https://github.com/GoldOrange261/Public-Note/blob/main/install/git.md)
 
 ## courses
