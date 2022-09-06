@@ -605,7 +605,41 @@ Q: 既然說loss卡住其實很少是因為卡在critical point，那麼前面�
 ![](https://i.imgur.com/WK7Kevb.png)
 將 $\eta$ 改成 $\frac{\eta}{\sigma_i^t}$ 讓learning rate可以為每個參數做客製化
 
-那如何求這個 $\sigma_i^t$ 呢?常見的方法是算gradient的Root Mean Square:
+那如何求這個 $\sigma_i^t$ 呢?常見的方法是算gradient的**Root Mean Square**:
 ![](https://i.imgur.com/WMxn0CQ.png)
+![](https://i.imgur.com/dRpXVoT.png) </br></br>
+可以看到這樣的策略是有效的，當整體的坡度很平緩的時候，$\sigma_i^t$ 就小，$\frac{\eta}{\sigma_i^t}$ 就大，坡度很陡峭的時候則相反 </br></br>
 
-<!-- TODO: 15:50 -->
+但上面的方法還不夠好，learning rate應該還要可以隨著時間調整，下面的圖可以看到，雖然是同一個方向，但<font color = green>綠色箭頭</font>的地方卻比較陡峭，需要小的learning rate，而<font color = red>紅色箭頭</font>的地方比較平緩，需要比較大的learning rate
+![](https://i.imgur.com/01NtqEv.png) </br></br>
+
+於是乎就有了**RMSProp**這個方法:
+![](https://i.imgur.com/tWhDamD.png) </br></br>
+簡單來說，相比原先的算式，多了一個 **$\alpha$** 來決定現在的gradient跟之前其他的gradient的權重 </br></br>
+![](https://i.imgur.com/FFRFuFz.png) </br></br>
+
+而我們常用的optimization策略就是**Adam**:
+![](https://i.imgur.com/WUK34X3.png)
+:::info
+ℹ️[Adam原始論文](https://arxiv.org/pdf/1412.6980.pdf)
+:::
+回到原本的這張圖，有了能夠自動調整的learning rate之後，就成功train起來了，至於<font color = red>紅色圈圈</font>的部分，是因為走了很長一段路之後，累積了很多很小的gradient，平均下來就小了，所以learning rate又變大直接開噴，但不用擔心，噴了幾個很大的gradient之後，learning rate又會變小
+![](https://i.imgur.com/CaEJw7p.png) </br></br>
+
+**Q: 那要如何避免這樣的狀況呢?** </br>
+*A: Learning Rate Scheduling!!* </br></br>
+隨著不斷的update我們離終點越來越近，於是我們把learning rate減小，解決了到後面會亂噴的問題
+![](https://i.imgur.com/4qQuVYc.png) </br></br>
+
+Learning Rate Scheduling也不止有Learning Rate Decay這個方法，還有比如**Warm Up**這個方法:
+![](https://i.imgur.com/eHwOwVU.png) </br></br>
+這個方法在訓練之後會講的**BERT**中常常看到，但不是先有**BERT**才有**Warm Up**的。至於為什麼Warm Up這個方法會有效，雖然還沒有一個確切的答案，但可以這樣解釋: ==既然我們的learning rate是透過之前的gradient總和來進行調整的，在剛起步的時候，這個統計數據的資料還不夠多==，所以一開始先壓低learning rate，直到資料夠多的時候，才提高learning rate
+:::info
+ℹ️延伸閱讀: [RAdam](https://arxiv.org/abs/1908.03265)
+:::
+
+**總結一下:** </br>
+![](https://i.imgur.com/9yOHgRN.png) </br></br>
+
+學了進階的optimization方法之後，使得我們可以應付崎嶇的error surface，但有沒有可能可以把error surface直接炸平呢?如果error surface變得不那麼崎嶇，就能更利於training!
+![](https://i.imgur.com/joqZoUV.png)
