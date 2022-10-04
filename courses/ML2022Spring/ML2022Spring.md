@@ -643,3 +643,27 @@ Learning Rate Scheduling也不止有Learning Rate Decay這個方法，還有比�
 
 學了進階的optimization方法之後，使得我們可以應付崎嶇的error surface，但有沒有可能可以把error surface直接炸平呢?如果error surface變得不那麼崎嶇，就能更利於training!
 ![](https://i.imgur.com/joqZoUV.png)
+
+## 類神經網路訓練不起來怎麼辦 (四)：損失函數 (Loss) 也可能有影響
+
+一般我們訓練model，是輸入一個 $x$ 得到 $y$ ，那可以利用這樣的方式去做分類嗎? 這種方法可能會有瑕疵，假如1代表class 1，2代表class 2，3代表class 3，那麼這就是在暗示class 1跟class 2比較像，而跟class 3比較不像，如果今天分類的東西有這樣的關係，那或許還說得過去，但通常不會有這樣的關係。
+
+![](https://i.imgur.com/QP8FLaG.png)
+
+要如何解決上述的問題呢? 我們可以透過 **one-hot vector** 來表示每一個class:
+
+![](https://i.imgur.com/TPLeGXa.png)
+
+接著我們改造一下model的輸出:
+
+![](https://i.imgur.com/QZTGolH.png)
+
+比較一下兩者的差異:
+
+![](https://i.imgur.com/0RHTt3W.png)
+
+原本輸出的 $y$ 是一個數值，而分類輸出的 $y$ 則是一個向量
+
+:::info
+ℹ️這裡要注意的是，model出來的 $y$ 還要經過一個 $softmax$ 函數，比較簡單的說法是 $\hat{y}$ 裡面的內容不是0就是1，所以 $y$ 要經過一個標準化變成 $y'$ 再來去跟 $\hat{y}$ 算距離
+:::
