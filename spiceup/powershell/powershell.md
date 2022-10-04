@@ -1,4 +1,4 @@
-# 提升PowerShell的使用體驗
+# 提升 PowerShell 的使用體驗
 
 ## 為資料夾和檔案添加圖標
 

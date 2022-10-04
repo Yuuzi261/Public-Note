@@ -8,8 +8,9 @@
 
 ## courses
 
-* [MACHINE LEARNING 2022 SPRING](https://github.com/GoldOrange261/Public-Note/blob/main/courses/ML2022Spring/README.md)
+* [MACHINE LEARNING 2022 SPRING](https://hackmd.io/@Yuuzi/ML2022SPRING)
 
 ## spice up
 
-* [美化 Windows Terminal](https://github.com/GoldOrange261/Public-Note/tree/main/spiceup/wt/README.md)
+* [美化 Windows Terminal](https://hackmd.io/@Yuuzi/wt)
+* [提升 PowerShell 的使用體驗](https://hackmd.io/@Yuuzi/ps)
