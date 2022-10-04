@@ -88,3 +88,7 @@
 
 1. 這部份很簡單，甚至不用操作JSON檔，所以就不詳細寫了，只要在Windows Terminal設定介面依照自己的喜好進行設定就可以了
 ![](https://i.imgur.com/8FktBkY.png)
+
+:::info
+ℹ️延伸閱讀: [提升 PowerShell 的使用體驗](https://hackmd.io/@Yuuzi/ps)
+:::
