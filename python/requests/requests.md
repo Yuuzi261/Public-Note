@@ -309,3 +309,39 @@ print(r)
 ![](https://i.imgur.com/PMVL3ma.png)
 
 :::
+
+## 設定Timeout
+
+我們可以將設定的請求設定**Timeout**，如果伺服器處理太久，就會報錯，這裡使用[httbin](https://httpbin.org/)中的**delay來模擬延遲很久的回應**
+
+```py
+# delay/{延遲秒數}
+url = 'https://httpbin.org/delay/5'
+
+# 如果報錯就輸出TIME OUT!!，否則輸出r 
+try:
+    r = req.get(url, timeout=3)
+    print(r)
+except:
+    print('TIME OUT!!')
+```
+
+因為伺服器過了5秒才回應，但我們只能容忍3秒，於是就輸出了**TIME OUT!!**：
+
+![](https://i.imgur.com/7WQOr63.png)
+
+那如果伺服器只花了2秒就回應的話：
+
+```py
+url = 'https://httpbin.org/delay/2'
+
+try:
+    r = req.get(url, timeout=3)
+    print(r)
+except:
+    print('TIME OUT!!')
+```
+
+這樣就OK了：
+
+![](https://i.imgur.com/cdJMAlA.png)
