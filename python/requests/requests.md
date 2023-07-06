@@ -159,3 +159,87 @@ print(r.text)
 ![](https://i.imgur.com/Vabz5iy.png)
 
 因為這次我們有傳輸參數所以**args**就不是空白而是剛剛傳入的參數，再觀察一下**url**的部分：`"url": "https://httpbin.org/get?id=NaCHokAwaiI&page=1011"`，問號後面確實有我們附帶的參數
+
+## 發送POST請求
+
+直接將剛剛的程式碼稍加修改並觀察（get全部改成post）
+
+```py
+import requests as req
+
+url = 'https://httpbin.org/post'
+params = {
+    'id' : 'NaCHokAwaiI',
+    'page' : '1011'
+}
+r = req.post(url, params=params)
+print(r.text)
+```
+
+![](https://i.imgur.com/6vi0mb1.png)
+
+可以發現跟GET比起來，POST多了**data**、**files**、**form**和**json**，這是因為POST主要的功能是要上傳資料到伺服器。接下來我們就試著上傳資料到伺服器吧！
+
+### form欄位
+
+```py
+import requests as req
+
+url = 'https://httpbin.org/post'
+params = {
+    'id' : 'NaCHokAwaiI',
+    'page' : '1011'
+}
+data = {
+    'name' : 'Nacho',
+    'bd' : '10/11'
+}
+r = req.post(url, params=params, data=data)
+print(r.text)
+```
+
+執行結果如下，由此可知我們的資料是被用表單的的形式上傳到伺服器的
+
+![](https://i.imgur.com/DmrExrb.png)
+
+### json/data欄位
+
+如果想改用json的格式上傳到伺服器的話，就將**data**改成**json**即可
+
+```py
+r = req.post(url, params=params, json=data)
+```
+
+這樣一來我們的data就會出現在**json**那裡了，**data**欄位也不為空了
+
+![](https://i.imgur.com/LPzaaH7.png)
+
+:::info
+ℹ️**data和json欄位的區別**
+
+- json欄位是指請求中的JSON格式的數據，它會被自動解析為一個Python字典。
+- data欄位是指請求中的原始數據，它是一個字符串，不會被解析。
+- 如果請求的Content-Type是application/json，那麼json欄位和data欄位的值應該是一致的，只是格式不同。
+- 如果請求的Content-Type不是application/json，那麼json欄位可能會是None，因為無法解析非JSON格式的數據。
+
+:::
+
+### files欄位
+
+**files**跟我們要上傳的檔案有關，這裡以我們先前下載下來的圖片為例
+
+```py
+# 以二進制檔案的形式讀取Nacho.png並放入字典中
+with open('Nacho.png', mode='rb') as file:
+    image = { 'Nacho_image' : file.read() }
+
+r = req.post(url, files=image)
+
+# 因為回應太長了所以寫到log裡面看才不會被洗掉
+with open('output.log', mode='w') as file:
+    file.write(r.text)
+```
+
+圖片確實是在files裡面：
+
+![](https://i.imgur.com/4ZzJ9Uw.png)
