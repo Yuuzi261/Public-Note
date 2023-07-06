@@ -14,3 +14,7 @@
 
 * [美化 Windows Terminal](https://hackmd.io/@Yuuzi/wt)
 * [提升 PowerShell 的使用體驗](https://hackmd.io/@Yuuzi/ps)
+
+## python
+
+* [Python Requests Module 快速上手](https://hackmd.io/@Yuuzi/RequestsGetStartedQuickly)
