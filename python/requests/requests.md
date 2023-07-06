@@ -113,7 +113,7 @@ with open('Nacho.png', mode='wb') as file:
 ## 測試請求
 
 :::info
-ℹ️可以用[httbin](https://httpbin.org/)這個網站來測試自己發出去的請求
+ℹ️可以用[httpbin](https://httpbin.org/)這個網站來測試自己發出去的請求
 :::
 
 先來測試GET吧！
@@ -153,7 +153,7 @@ https://www.youtube.com/watch?v=GyhLj-YdJW4
 ℹ️如果有多個參數的話在網址中會以'&'隔開
 :::
 
-如果我們要發送這種有附帶參數的網址，可以這樣做（這邊以[httbin](https://httpbin.org/)來做測試）：
+如果我們要發送這種有附帶參數的網址，可以這樣做（這邊以[httpbin](https://httpbin.org/)來做測試）：
 
 ```py
 url = 'https://httpbin.org/get'
@@ -278,7 +278,7 @@ print(r.text)
 
 ## 基本驗證
 
-在[httbin](https://httpbin.org/)也可以讓我們測試基本驗證，如下圖：
+在[httpbin](https://httpbin.org/)也可以讓我們測試基本驗證，如下圖：
 
 ![](https://i.imgur.com/X1xQESK.png)
 
@@ -322,7 +322,7 @@ print(r)
 
 ## 設定Timeout
 
-我們可以將設定的請求設定**Timeout**，如果伺服器處理太久，就會報錯，這裡使用[httbin](https://httpbin.org/)中的**delay來模擬延遲很久的回應**
+我們可以將設定的請求設定**Timeout**，如果伺服器處理太久，就會報錯，這裡使用[httpbin](https://httpbin.org/)中的**delay來模擬延遲很久的回應**
 
 ```py
 # delay/{延遲秒數}
