@@ -1,10 +1,8 @@
 {%hackmd BJrTq20hE %}
 
-# Python Requests Module快速上手
+# 安裝Requests
 
-## 安裝Requests
-
-### STEP1. 在終端機利用pip安裝
+## STEP1. 在終端機利用pip安裝
 
 在終端機上打上指令
 
@@ -15,7 +13,7 @@ pip install requests
 安裝完成後通常會是這樣的畫面：
 ![](https://i.imgur.com/54embYz.png)
 
-### STEP2. 檢查是否安裝成功
+## STEP2. 檢查是否安裝成功
 
 在終端機上打上指令
 
@@ -38,7 +36,7 @@ print(requests.__version__)
 大致會出現的結果：（若安裝時沒有指定版本，打印出來的版本可能會跟我不一樣）
 ![](https://i.imgur.com/u8pnStZ.png)
 
-## 發送GET請求
+# 發送GET請求
 
 我們可以requests模組來向特定網站發送請求，首先先從發送GET請求開始吧！
 
@@ -74,7 +72,7 @@ print(r.headers)
 
 這邊注意一下**Content-Type**這欄，檔案類型為**text/html**，跟我們剛剛打印text所發現的事一樣
 
-## 下載圖片
+# 下載圖片
 
 將要下載的圖片網址複製下來（這裡以[我網站](https://goldorange261.github.io/Note-web/)上的圖片為例）
 
@@ -110,7 +108,7 @@ with open('Nacho.png', mode='wb') as file:
 可以看到在當前路徑下確實將圖片給儲存下來了：
 ![](https://i.imgur.com/ewI8iOJ.png)
 
-## 測試請求
+# 測試請求
 
 :::info
 ℹ️可以用[httpbin](https://httpbin.org/)這個網站來測試自己發出去的請求
@@ -129,7 +127,7 @@ print(r.text)
 
 這樣就可以檢查我們到底發送了什麼東西給伺服器，**args**就是附帶的參數，因為我們剛剛沒有附帶參數，所以就是空的。**header**都是python自動幫我們附上的。**origin**就是我發送請求的這台電腦現在的IP，**url**就是發送到哪個網址
 
-## 網址附帶參數
+# 網址附帶參數
 
 一般在瀏覽網頁時你可能會看到網址後面有個問號，舉個例子：
 
@@ -170,7 +168,7 @@ print(r.text)
 
 因為這次我們有傳輸參數所以**args**就不是空白而是剛剛傳入的參數，再觀察一下**url**的部分：`"url": "https://httpbin.org/get?id=NaCHokAwaiI&page=1011"`，問號後面確實有我們附帶的參數
 
-## 發送POST請求
+# 發送POST請求
 
 直接將剛剛的程式碼稍加修改並觀察（get全部改成post）
 
@@ -190,7 +188,7 @@ print(r.text)
 
 可以發現跟GET比起來，POST多了**data**、**files**、**form**和**json**，這是因為POST主要的功能是要上傳資料到伺服器。接下來我們就試著上傳資料到伺服器吧！
 
-### form欄位
+## form欄位
 
 ```py
 import requests as req
@@ -212,7 +210,7 @@ print(r.text)
 
 ![](https://i.imgur.com/DmrExrb.png)
 
-### json/data欄位
+## json/data欄位
 
 如果想改用json的格式上傳到伺服器的話，就將**data**改成**json**即可
 
@@ -234,7 +232,7 @@ r = req.post(url, params=params, json=data)
 
 :::
 
-### files欄位
+## files欄位
 
 **files**跟我們要上傳的檔案有關，這裡以我們先前下載下來的圖片為例
 
@@ -254,7 +252,7 @@ with open('output.log', mode='w') as file:
 
 ![](https://i.imgur.com/4ZzJ9Uw.png)
 
-## 改變Resquest Header
+# 改變Resquest Header
 
 注意一下以前我們所發送的請求，在**User-Agent**是不是都長這樣：`"User-Agent": "python-requests/x.xx.x"`，基本上這樣就是很明白的在告訴伺服器我是爬蟲請擋掉我，因此我們要偽造這個**User-Agent**，讓它看起來像是由瀏覽器所發送的
 
@@ -276,7 +274,7 @@ print(r.text)
 
 ![](https://i.imgur.com/P4vGOmk.png)
 
-## 基本驗證
+# 基本驗證
 
 在[httpbin](https://httpbin.org/)也可以讓我們測試基本驗證，如下圖：
 
@@ -320,7 +318,7 @@ print(r)
 
 :::
 
-## 設定Timeout
+# 設定Timeout
 
 我們可以將設定的請求設定**Timeout**，如果伺服器處理太久，就會報錯，這裡使用[httpbin](https://httpbin.org/)中的**delay來模擬延遲很久的回應**
 
