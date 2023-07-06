@@ -107,3 +107,55 @@ with open('Nacho.png', mode='wb') as file:
 
 可以看到在當前路徑下確實將圖片給儲存下來了：
 ![](https://i.imgur.com/ewI8iOJ.png)
+
+## 測試請求
+
+:::info
+ℹ️可以用[httbin](https://httpbin.org/)這個網站來測試自己發出去的請求
+:::
+
+先來測試GET吧！
+
+```py
+url = 'https://httpbin.org/get'
+r = req.get(url)
+print(r.text)
+```
+
+可以看到它回傳給我們的東西就是我們發送出去的請求：
+![](https://i.imgur.com/eEVebKv.png)
+
+這樣就可以檢查我們到底發送了什麼東西給伺服器，**args**就是附帶的參數，因為我們剛剛沒有附帶參數，所以就是空的。**header**都是python自動幫我們附上的。**origin**就是我發送請求的這台電腦現在的IP，**url**就是發送到哪個網址
+
+## 網址附帶參數
+
+一般在瀏覽網頁時你可能會看到網址後面有個問號，舉個例子：
+
+```html
+https://www.youtube.com/watch?v=GyhLj-YdJW4
+```
+
+[![キャットラビング / Nachoneko (cover)](https://img.youtube.com/vi/GyhLj-YdJW4/maxresdefault.jpg)](https://www.youtube.com/watch?v=GyhLj-YdJW4)
+
+這個YouTube影片的網址後面就有一個參數**v**，而這個參數所儲存的資料就是這個影片的ID
+
+:::info
+ℹ️如果有多個參數的話在網址中會以'&'隔開
+:::
+
+如果我們要發送這種有附帶參數的網址，可以這樣做（這邊以[httbin](https://httpbin.org/)來做測試）：
+
+```py
+url = 'https://httpbin.org/get'
+params = {
+    'id' : 'NaCHokAwaiI',
+    'page' : '1011'
+}
+r = req.get(url, params=params)
+print(r.text)
+```
+
+執行結果如下：
+![](https://i.imgur.com/Vabz5iy.png)
+
+因為這次我們有傳輸參數所以**args**就不是空白而是剛剛傳入的參數，再觀察一下**url**的部分：`"url": "https://httpbin.org/get?id=NaCHokAwaiI&page=1011"`，問號後面確實有我們附帶的參數
