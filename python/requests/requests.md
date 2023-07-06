@@ -243,3 +243,25 @@ with open('output.log', mode='w') as file:
 圖片確實是在files裡面：
 
 ![](https://i.imgur.com/4ZzJ9Uw.png)
+
+### 改變Resquest Header
+
+注意一下以前我們所發送的請求，在**User-Agent**是不是都長這樣：`"User-Agent": "python-requests/x.xx.x"`，基本上這樣就是很明白的在告訴伺服器我是爬蟲請擋掉我，因此我們要偽造這個**User-Agent**，讓它看起來像是由瀏覽器所發送的
+
+首先打開瀏覽器按下**F12**並選到**網路（Network）**這個頁面裡面，然後重新整理網頁，找到**User-Agent**，最後複製下來
+
+![](https://i.imgur.com/DtV4xdR.png)
+
+創建一個字典header，裡面有一個User-Agent的key，將剛剛複製下來的字串作為它的值
+
+```py
+header = {
+    'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.67'
+}
+r = req.post(url, headers=header)
+print(r.text)
+```
+
+這樣**User-Agent**就成功偽造了：
+
+![](https://i.imgur.com/P4vGOmk.png)
