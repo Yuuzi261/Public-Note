@@ -71,3 +71,39 @@ print(r.headers)
 ![](https://i.imgur.com/YYp7m3y.png)
 
 這邊注意一下**Content-Type**這欄，檔案類型為**text/html**，跟我們剛剛打印text所發現的事一樣
+
+## 下載圖片
+
+將要下載的圖片網址複製下來（這裡以[我網站](https://goldorange261.github.io/Note-web/)上的圖片為例）
+
+```py
+import requests as req
+
+url = 'https://goldorange261.github.io/Note-web/index/welcome.png'
+r = req.get(url)
+print(r.text)
+```
+
+如果像之前一樣直接打印出text的話就會出現一堆亂碼，這是因為圖片檔這種二進制檔案以文字的形式去讀取造成的，因此我們要稍微修改一下程式碼
+
+```py
+print(r.content)
+```
+
+打印出來就不會是亂碼了：
+![](https://i.imgur.com/B6D6Oh7.png)
+
+:::info
+ℹ️諸如圖片、影片、PDF...這種檔案，我們都可以使用`r.content`
+:::
+
+不過這只是打印出來而已，並沒有儲存下來，所以要再補上這2行
+
+```py
+# 因為要寫入2進制檔案所以模式要使用wb（write byte）
+with open('Nacho.png', mode='wb') as file:
+    file.write(r.content)
+```
+
+可以看到在當前路徑下確實將圖片給儲存下來了：
+![](https://i.imgur.com/ewI8iOJ.png)
