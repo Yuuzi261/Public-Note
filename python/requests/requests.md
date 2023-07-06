@@ -254,7 +254,7 @@ with open('output.log', mode='w') as file:
 
 ![](https://i.imgur.com/4ZzJ9Uw.png)
 
-### 改變Resquest Header
+## 改變Resquest Header
 
 注意一下以前我們所發送的請求，在**User-Agent**是不是都長這樣：`"User-Agent": "python-requests/x.xx.x"`，基本上這樣就是很明白的在告訴伺服器我是爬蟲請擋掉我，因此我們要偽造這個**User-Agent**，讓它看起來像是由瀏覽器所發送的
 
