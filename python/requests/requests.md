@@ -137,7 +137,15 @@ print(r.text)
 https://www.youtube.com/watch?v=GyhLj-YdJW4
 ```
 
-[![キャットラビング / Nachoneko (cover)](https://img.youtube.com/vi/GyhLj-YdJW4/maxresdefault.jpg)](https://www.youtube.com/watch?v=GyhLj-YdJW4)
+:::danger
+
+▶️**YouTube**
+
+[![](https://img.youtube.com/vi/GyhLj-YdJW4/maxresdefault.jpg)](https://www.youtube.com/watch?v=GyhLj-YdJW4)
+
+キャットラビング / Nachoneko (cover)
+
+:::
 
 這個YouTube影片的網址後面就有一個參數**v**，而這個參數所儲存的資料就是這個影片的ID
 
