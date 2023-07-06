@@ -265,3 +265,47 @@ print(r.text)
 這樣**User-Agent**就成功偽造了：
 
 ![](https://i.imgur.com/P4vGOmk.png)
+
+## 基本驗證
+
+在[httbin](https://httpbin.org/)也可以讓我們測試基本驗證，如下圖：
+
+![](https://i.imgur.com/X1xQESK.png)
+
+用法也非常簡單，可以自由設定使用者名稱和密碼：`/basic-auth/{user}/{passwd}`
+
+我就簡單地設定了一組：
+
+![](https://i.imgur.com/WbDs3EL.png)
+
+可以看到進入這個網頁之後會要我們輸入使用者名稱和密碼，如果輸入的使用者名稱或是密碼不正確，就會要求我們重新輸入直到輸入正確為止，認證成功後可以看到這個畫面
+
+![](https://i.imgur.com/9fZ778D.png)
+
+我們一樣也可以使用Python幫我們做基本認證的登入
+
+```py
+url = 'https://httpbin.org/basic-auth/Nacho/1011'
+r = req.get(url, auth=('Nacho', '1011'))
+print(r.text)
+```
+
+這樣就認證成功了：
+
+![](https://i.imgur.com/HIgEHTV.png)
+
+:::warning
+❓那如果沒有驗證成功/沒有驗證呢？
+
+直接GET試試看：
+
+```py
+r = req.get(url)
+print(r)
+```
+
+得到了401（Unauthorized）的回應：
+
+![](https://i.imgur.com/PMVL3ma.png)
+
+:::
