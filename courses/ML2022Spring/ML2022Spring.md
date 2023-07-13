@@ -646,6 +646,8 @@ Learning Rate Scheduling也不止有Learning Rate Decay這個方法，還有比�
 
 ## 類神經網路訓練不起來怎麼辦 (四)：損失函數 (Loss) 也可能有影響
 
+### Classification v.s. Regression
+
 一般我們訓練model，是輸入一個 $x$ 得到 $y$ ，那可以利用這樣的方式去做分類嗎? 這種方法可能會有瑕疵，假如1代表class 1，2代表class 2，3代表class 3，那麼這就是在暗示class 1跟class 2比較像，而跟class 3比較不像，如果今天分類的東西有這樣的關係，那或許還說得過去，但通常不會有這樣的關係。
 
 ![](https://i.imgur.com/QP8FLaG.png)
@@ -667,3 +669,25 @@ Learning Rate Scheduling也不止有Learning Rate Decay這個方法，還有比�
 :::info
 ℹ️這裡要注意的是，model出來的 $y$ 還要經過一個 $softmax$ 函數，比較簡單的說法是 $\hat{y}$ 裡面的內容不是0就是1，所以 $y$ 要經過一個標準化變成 $y'$ 再來去跟 $\hat{y}$ 算距離
 :::
+
+簡單說明一下 $softmax$ 的運作:
+
+![](https://i.imgur.com/nEMtlIf.png)
+
+取exp是為了強制讓資料全變為正數，之後再做normalize，這樣一來所有的 $y'_i$ 就會介於0 ~ 1之間，並且總和為1。經過 $softmax$ 函數之後，會讓大的值跟小的值差距更大 *(你可能會覺得-3跟3明明差6，趨近於0跟0.88只差大約0.88哪有比較多？但是原本的上下限是-∞ ~ ∞喔，normalize之後的上下限是0 ~ 1，這樣應該有感覺趨近於0跟0.88有差比較多了吧)*
+
+:::info
+ℹ️如果是只有2個class要進行分類的話，雖然也是可以用 $softmax$，但會更常看到有人直接用 $sigmoid$，這種情況下這兩個函數出來的結果是相同的
+:::
+
+### Lost of Classification
+
+要計算 $y'$ 和 $\hat{y}$ 之間的距離，有不只一種方法，但比起我們熟悉的MSE，更為常見的作法是 **Cross-entropy**，當 $y'$ 和 $\hat{y}$ 一樣的時候，我們一樣可以minimize cross-entropy 的值
+
+![](https://i.imgur.com/yLCKKho.png)
+
+以結果來說，**Cross-entropy** 比起MSE，更適合用在分類上，這個函數常用到它在pytorch中，是直接跟 **Soft-max** 綁定在一起的，只要呼叫 **Cross-emtropy** 裡面就會自動內建 **Soft-max** 函數在最後一層，所以如果你用 **Cross-entropy** 的時候又自己加了 **Soft-max**，就會變成經過兩層的 **Soft-max**
+
+![](https://i.imgur.com/iwRRyL0.png)
+
+這裡簡單說明一下為何 **Cross-entropy** 更好，當loss小的時候 MSE 和 Cross-entropy 是差不多的，但是當loss大的時候，Cross-entropy 是有斜率的，而 MSE 卻非常平坦，這會造成我們在做 gradient desent 的時候窒礙難行。當然，上面的例子是建立在我們使用了一個不怎麼樣的optimizer的狀況下，假如我們用 Adam ，在gradient很小的時候自動調大learning rate，那或許還是可以走到loss小的地方，但比起使用 Cross-entropy，MSE 確實會讓訓練變得困難一些，所以損失函數對於optimization是確實有影響的！
