@@ -43,3 +43,23 @@
 ![](https://i.imgur.com/LcVitq7.png)
 
 其中 kernel size 和 stride 是 Hyperparameter，kernel size 和 stride 通常不會設太大，7x7和9x9的 kernel size 其實就算很大了，至於 stride 不會設很大的理由是我們希望每個 Receptive Field 之間可以有重疊，以免漏掉一些在邊界上的 pattern。如果有 Receptive Field 超出邊界，通常會進行 padding，全部填0、補平均數、或是直接拿邊界補上來都是可行的方法，並且一個 Receptive Field 通常會有一組 Neuron 守備，不會只有一個
+
+## Observation 2
+
+講完第一個觀察，你可能就會有這個疑問，一個 pattern 可能會出現在圖片的各個區域中，這樣會構成什麼問題嗎？答案其實是不會，因為每個 Receptive Field 都有 Neuron 在守備，所以不管出現在哪裡都是可以被偵測出來的
+
+![](https://i.imgur.com/i0HDgju.png)
+
+:::warning
+❓但這時就會出現另一個問題，既然每個 Receptive Field 都有一個 Neuron 守備某個 pattern，那我們有需要每一個 Receptive Field都去放一個獨立偵測鳥嘴的 Neuron 嗎？
+:::
+
+這樣做顯得很沒效率而且浪費資源，我們實際上不需要這麼多的 Neuron 和 weight 去看每一個 Receptive Field 有沒有特定的 pattern ，既然做的事情是一樣的，那麼我們是不是能夠讓某些 Neuron 共享 weight 呢？
+
+![](https://i.imgur.com/nylB5RL.png)
+
+沒錯於是我們就有了第二個簡化！不同的 Receptive Field 可能會有不同的 Neuron 共享同樣的參數，雖然參數一樣，但因為輸入不同所以輸出也不會一樣，所以理所當然的我們不會讓相同 Receptive Field 裡的 Neuron 共享參數，不然這樣輸出就會變得一樣了。至於如何共享也是可以自由決定的，不過和第一個簡化一樣會介紹常見的共享方法是如何設定的
+
+![](https://i.imgur.com/1d4Kl0O.png)
+
+其實設定的方法非常直覺，就是每組 Receptive Field 的參數都是一樣的，每個守備範圍都有一個相同參數的 Neuron 來偵測某個特定的 pattern，我們稱呼這些 Neuron 為 **Filter**
