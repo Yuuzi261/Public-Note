@@ -105,3 +105,21 @@
 ![](https://i.imgur.com/7yyakAo.png)
 
 儘管我們的 Filter 一直都設 $3\times3$ 但對第二層的 Filter 來說，一個數字就代表著原圖的 $3\times3$，所以第二層的一個 Filter 其實可以守備到原圖的 $5\times5$ 大小，因此只要 Network 疊得夠深，就不用怕偵測不到比較巨大的 pattern！
+
+## Observation 3
+
+進行影像辨識的時候，其實還有第三個常用的東西稱作 **Pooling**，目的是為了減少運算量，但出來的結果也會稍微差一點，其原理非常簡單，就是縮小圖片的大小
+
+![](https://i.imgur.com/YD837g2.png)
+
+Pooling 本身沒有參數，也就是說它不是一個 Layer，它沒有 weight 所以也沒有要 learn 的東西，比較像是 Sigmoid 和 ReLU 這種，這裡介紹一個常見的 Pooling，**Max Pooling**。簡單來說就是在一個範圍內選最大的值作為代表，當然這個範圍可以自己決定，也不一定要選最大的值作為代表，比如取平均數或是幾何平均數之類的，但這就是別種的 Pooling 了
+
+![](https://i.imgur.com/wDyYrod.png)
+
+一般在實作上會將 Convolution 和 Pooling 交替使用，但近年來影像辨識的 Network 的設計開始棄用 Pooling 了，畢竟現在運算資源越來越多，如果全 Convolution 可以跑得起來的話就不需要多一層 Pooling 反而更好
+
+![](https://i.imgur.com/O0fQfEr.png)
+
+最後總結一下一個 CNN 大致的流程，一張圖片經過 Convolution 和 Pooling（可有可無）之後，將結果拉直成一個向量，接下來將拉直的向量丟進 Fully Connected Layers 裡面，可能還要經過 softmax，最終獲得影像辨識的結果
+
+![](https://i.imgur.com/b427pYT.png)
