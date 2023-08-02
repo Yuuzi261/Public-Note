@@ -690,6 +690,6 @@ Learning Rate Scheduling也不止有Learning Rate Decay這個方法，還有比�
 
 ![](https://i.imgur.com/iwRRyL0.png)
 
-這裡簡單說明一下為何 **Cross-entropy** 更好，當loss小的時候 MSE 和 Cross-entropy 是差不多的，但是當loss大的時候，Cross-entropy 是有斜率的，而 MSE 卻非常平坦，這會造成我們在做 gradient desent 的時候窒礙難行。當然，上面的例子是建立在我們使用了一個不怎麼樣的optimizer的狀況下，假如我們用 Adam ，在gradient很小的時候自動調大learning rate，那或許還是可以走到loss小的地方，但比起使用 Cross-entropy，MSE 確實會讓訓練變得困難一些，所以損失函數對於optimization是確實有影響的！
+這裡簡單說明一下為何 **Cross-entropy** 更好，當loss小的時候 MSE 和 Cross-entropy 是差不多的，但是當loss大的時候，Cross-entropy 是有斜率的，而 MSE 卻非常平坦，這會造成我們在做 gradient desent 的時候窒礙難行。當然，上面的例子是建立在我們使用了一個不怎麼樣的optimizer的狀況下，假如我們用 Adam ，在gradient很小的時候自動調大 learning rate，那或許還是可以走到 loss 小的地方，但比起使用 Cross-entropy，MSE 確實會讓訓練變得困難一些，所以損失函數對於 optimization 是確實有影響的！
 
 [繼續閱讀➡️]()

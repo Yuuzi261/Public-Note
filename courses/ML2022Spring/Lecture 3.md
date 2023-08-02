@@ -63,3 +63,45 @@
 ![](https://i.imgur.com/1d4Kl0O.png)
 
 其實設定的方法非常直覺，就是每組 Receptive Field 的參數都是一樣的，每個守備範圍都有一個相同參數的 Neuron 來偵測某個特定的 pattern，我們稱呼這些 Neuron 為 **Filter**
+
+## Benefit of Convolutional Layer
+
+給 Fully Connected Layer 加上上述兩種簡化之後，使得彈性下降、bias 變大，但這並不代表不好，而是更能適應圖像辨識這項任務，儘管 Fully Connected Layer 可以用於很多任務，卻沒有一項是精通的，而且容易 overfitting。這個加上兩項限制的 Layer，就被稱作 **Convolutional Layer**，至於用到 Convolutional Layer 的 Network 就是我們熟知的 **CNN**
+
+![](https://i.imgur.com/8k9eSNd.png)
+
+:::info
+接下來我們會以另一種角度介紹 CNN，這個版本的故事也會解釋為何之前提到說3x3的 Receptive Field 就足夠了
+:::
+
+![](https://i.imgur.com/SCoAxsL.png)
+
+所謂 **Convolution** 就是指裡面有很多 **Filter** 的這種結構，這些 **Filter** 的大小是 $3\times3\times channel$ 的大小（跟之前說的一樣其實不一定是 $3\times3$，但一般都是這個大小），如果是彩色圖片，channel 為 3、如果是黑白圖片，channel 為 1。每個 **Filter** 的目的就是去抓取圖片中的特定 pattern，那麼 **Filter** 是如何去抓取 pattern 的呢？
+
+![](https://i.imgur.com/T62Qu0B.png)
+
+**Filter** 的數值理論上是未知的，必須透過 gradient descent 來找出來，這裡假設已經訓練完了，並且這是一張黑白的圖所以只有一個 channel
+
+![](https://i.imgur.com/hrdRJSA.png)
+
+這裡舉的例子 stride = 1，也就是 **Filter** 每次移動一個像素，每次都跟圖片的數值做相乘，於是得到了右下角的圖。我們可以發現，當圖片出現這種從左上到右下的 pattern 時，相乘出來的結果會最大，這兩個出現 3 的地方，也對應了圖片中左上跟左下出現的相同 pattern
+
+![](https://i.imgur.com/HL76u9t.png)
+
+接下來每個 **Filter** 都做相同的事，所以有幾個 **Filter** 就會得到相同數量的圖，這些圖我們稱作 **Feature Map**
+
+![](https://i.imgur.com/LxW8WB9.png)
+
+如同上面所說，如果有 64 個 **Filter**，那麼最後得到的 Feature Map 就會有 64 個 channel，我們可以將這個 Feature Map 視為一張新的圖片。接下來，我們當然可以疊很多層的 Convolution，這個第二層的 Convolution 的 Filter 就會變成 $3\times3\times64$，這裡的 64 就是上一層 Convolution 的 Filter 數目
+
+![](https://i.imgur.com/Mp0mJ2Q.png)
+
+:::warning
+❓回到之前留下的一個問題，如果我們的 Filter 一直設 $3\times3$ 會不會無法偵測到比較大的 pattern 呢？
+:::
+
+從下面這張圖就可以很明顯地知道不會！
+
+![](https://i.imgur.com/7yyakAo.png)
+
+儘管我們的 Filter 一直都設 $3\times3$ 但對第二層的 Filter 來說，一個數字就代表著原圖的 $3\times3$，所以第二層的一個 Filter 其實可以守備到原圖的 $5\times5$ 大小，因此只要 Network 疊得夠深，就不用怕偵測不到比較巨大的 pattern！
