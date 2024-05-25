@@ -14,7 +14,7 @@
 
 * [美化 Windows Terminal](https://hackmd.io/@Yuuzi/wt)
 * [提升 PowerShell 的使用體驗](https://hackmd.io/@Yuuzi/ps)
-* [neofetch(temp)](https://hackmd.io/@Yuuzi/neofetch)
+* [用自定義圖像作為 Neofetch 的 ASCII Logo](https://hackmd.io/@Yuuzi/neofetch)
 
 ## python
 
